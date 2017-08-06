@@ -1,1 +1,1 @@
-# Wiki
+# [Wiki](https://github.com/jarekczek/Wiki/wiki)
