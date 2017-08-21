@@ -9,7 +9,12 @@ import javax.json.*
 import javax.ws.rs.client.Entity
 import javax.ws.rs.core.Response
 
-class AzureClient
+public interface VmActivity
+{
+  public void act(String ip, String vmName);
+}
+
+public class AzureClient
 {
   String _token = null
   JsonObject[] _vms = null
@@ -28,6 +33,8 @@ class AzureClient
     subscriptionId = a3378580-...
     // App registrations, keys
     clientSecret = hKvN...
+    // Resource groups, name
+    resourceGroup = ...
     */
 
     _props = new Properties()
@@ -130,7 +137,7 @@ class AzureClient
       resp = invoker.method(method)
     String textResp = resp.readEntity(String.class)
     if (resp.status.intdiv(100) == 2) {
-      println "ok ($resp.status)"
+      //println "ok ($resp.status)"
       //println textResp
       JsonObject jsonResp = null
       if (textResp.length() > 0) {
@@ -145,6 +152,33 @@ class AzureClient
     }
   }
 
+  String getIp(String ipName)
+  {
+    def cli = javax.ws.rs.client.ClientBuilder.newClient()
+    String link = "https://management.azure.com"
+    link += "/subscriptions/" + _props.getProperty("subscriptionId")
+    link += "/resourceGroups/" + _props.getProperty("resourceGroup")
+    link += "/providers/Microsoft.Network"
+    link += "/publicIPAddresses/" + ipName
+    def resp = cli.target(link)
+      .queryParam("api-version", "2017-08-01")
+      .request()
+      .header("Authorization", "Bearer " + token)
+      .get()
+    def jsonResp = javax.json.Json.createReader(
+      resp.readEntity(java.io.Reader.class))
+      .readObject()
+    if (resp.status == 200) {
+      def jsonProps = jsonResp.getJsonObject("properties")
+      if (jsonProps.containsKey("ipAddress"))
+        return jsonProps.getString("ipAddress")
+      else
+        return null
+    } else {
+      throw new RuntimeException("Blad azure rest, status $resp.status, $jsonResp")
+    }
+  }
+
   void startVm(String vmName)
   {
     verbVm(vmName, "POST", "start")
@@ -153,7 +187,8 @@ class AzureClient
 
   void stopVm(String vmName)
   {
-    verbVm(vmName, "POST", "powerOff")
+    //verbVm(vmName, "POST", "powerOff")
+    verbVm(vmName, "POST", "deallocate")
     println "$vmName status: " + getVmDisplayStatus(vmName)
   }
 
@@ -165,12 +200,86 @@ class AzureClient
   String getVmDisplayStatus(String vmName)
   {
     def vm = getVm(vmName)
-    def status = vm.getJsonArray("statuses").getJsonObject(1)
-    return status.getString("displayStatus")
+    //def status = vm.getJsonArray("statuses").getJsonObject(1)
+    String status = "?"
+    vm.getJsonArray("statuses")
+      .sort(false, { it.getString("code").startsWith("PowerState") ?
+                "0" : it.getString("code") })
+      .take(1)
+      .each { status = it.getString("displayStatus") }
+    if (status.equals("?")) {
+      throw new RuntimeException("Unable to get vm status "
+        + ", obtained statuses:\n" + vm.getJsonArray("statuses"))
+    }
+    return status
+  }
+
+  void waitUntil(String vmName, String requiredState, int seconds)
+  {
+    int delay = (1000 * seconds).intdiv(10)
+    if (delay < 5000)
+      delay = 5000
+    if (delay > 1000 * seconds)
+      delay = 1000 * seconds
+    int totalDelay = 0
+    while (true)
+    {
+      Thread.sleep(delay)
+      totalDelay += delay
+      def status = getVmDisplayStatus(vmName)
+      println "slept $delay, current status: $status"      
+      if (status.equals(requiredState))
+        break
+      if (totalDelay >= 1000 * seconds) {
+        throw new RuntimeException("Waited too long for " +
+          "$requiredState vmName")
+      }
+    }
+  }
+
+  void startActStopVm(String vmName, VmActivity activity)
+  {
+    startVm(vmName)
+    try {
+      waitUntil(vmName, "VM running", 180)
+      println "machine ready"
+      String ip = getIp(vmName + "-ip")
+      println "ip address: $ip"
+      activity.act(ip, vmName)
+    } finally {
+      stopVm(vmName)
+      waitUntil(vmName, "VM deallocated", 300)
+    }
+  }
+}
+
+class TestVmActivity implements VmActivity
+{
+  void act(String ip, String vmName)
+  {
+    println "Let's get main page from $ip"
+    def cli = javax.ws.rs.client.ClientBuilder.newClient()
+    def resp = cli.target("http://$ip/:8080").request().get()
+    def str = resp.getEntity(String.class)
+    println "status: $resp.status"
+    println str
   }
 }
 
 def ac = new AzureClient()
 //ac.startVm("weblogic")
 //ac.stopVm("weblogic")
-println ac.getVmDisplayStatus("weblogic")
+//println "initial status: " + ac.getVmDisplayStatus("weblogic")
+//ac.startActStopVm("weblogic", new TestVmActivity())
+//println "final status: " + ac.getVmDisplayStatus("weblogic")
+
+if (args[0] == "start") {
+  String vmName = args[1]
+  ac.startVm(vmName)
+  ac.waitUntil(vmName, "VM running", 100)
+  println "$vmName ip addres: " + ac.getIp(vmName + "-ip")
+}
+
+if (args[0] == "stop") {
+  ac.stopVm(args[1])
+}
