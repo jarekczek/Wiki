@@ -1,0 +1,227 @@
+    javax.swing.JOptionPane.showMessageDialog(null, "hello");
+
+    Pattern p = Pattern.compile("(.+)\\.");  // , Pattern.CASE_INSENSITIVE)
+    Matcher m = p.matcher(sPlik);
+    if (m.find()) { // m.matches()
+      return m.group(1);
+    s = s.replaceAll("(K)", "\$1")
+    // non-capturing group: (?:X)
+    
+
+      Process p = Runtime.getRuntime().exec("cmd.exe /C echo \"\"Hello\"\"");
+      p.waitFor();
+
+  static void printStream(InputStream is) {
+    int ch;
+    try { while ((ch=is.read()) >= 0) { System.out.print(String.format("%c", ch)); } }
+    catch (IOException e) { System.err.println(e.toString()); }
+    }
+
+Thread.sleep(5000) //ms
+
+// date time java8
+String path = "kopia_jpkok_derby_" + LocalDateTime.now().format(
+  DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+// java<8
+java.text.SimpleDateFormat todaysDate = 
+    new java.text.SimpleDateFormat("yyyy-MM-dd");
+String backupdirectory = "c:/mybackups/" +
+    todaysDate.format((java.util.Calendar.getInstance()).getTime());
+
+java.exe {{{
+-XX:+TraceClassLoading
+}}}
+
+*************** JACOB ****************
+      rs.invoke("setKey", "virtualne");
+      f.setProperty(rs, "keyField", "synt", anAnal[0]);
+      for (int iAnal=1; iAnal<=Itg.MAX_ANAL; iAnal++) {
+        f.setProperty(rs, "keyField", "poz"+iAnal, anAnal[iAnal]);
+        }
+      f.setProperty(rs, "keyField", "dataokr", f.toStr(dtOd));
+      rs.invoke("getRec", Itg.GETGE);
+      while (rs.getPropertyAsInt("lastError")==0
+             && Itg.kontoZgodneRsAnal(rs, anAnal)
+             && Itg.getFieldD(rs, "dataokr").compareTo(dtDo) <= 0) {
+        //przetworzKontaPrzec(fi2, idKontr, nPozK, rs, rsz2, rsd, bBufor);
+        rs.invoke("getRec", Itg.GETNEXT);
+        }
+
+****************** JDBC ******************
+    sConnStr = "jdbc:odbc:;Driver=Driver do Microsoft Excel(*.xls);DBQ="+args[0];
+    sConnStr = "jdbc:odbc:;Driver={Microsoft Text Driver (*.txt; *.csv)};DBQ="+sKatalog;
+    sConnStrDst = "jdbc:sqlserver://localhost\\expr:1065"; //;databasename=metz_dk";
+    sConnStr = "jdbc:postgresql://localhost/metz_dk";
+    sConnStr = "jdbc:mysql://localhost/test" //mysql:mysql-connector-java:5.1.9
+    "jdbc:h2:mem:app2;TRACE_LEVEL_SYSTEM_OUT=1;DB_CLOSE_DELAY=-1"
+    java.sql.Connection con = DriverManager.getConnection(sConnStr);
+    conDst = DriverManager.getConnection(sConnStrDst, "sa", "sa");
+    java.sql.ResultSet rs = con.createStatement().executeQuery("select ...");
+    con.createStatement().execute("delete from ...");
+    ResultSetMetaData md = rs.getMetaData();
+    for (int i=1; i<=md.getColumnCount(); i++) { f.out(md.getColumnName(i); }
+    while (rs.next()) { f.out(rs.getString(1)); }
+    // wymaga createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE)
+    rs.moveToInsertRow();
+    rs.updateString("TYP", "Kontrakty INTROL");
+    rs.insertRow();
+    rs.close();
+
+
+
+SimpleFormatter.format {{{
+1 time
+2 caller
+3 namespace
+4 level
+5 message
+}}}
+
+hibernate {{{
+logging {{{
+Używa jbossa. Nic nie widziałem, dopóki sobie nie wpisałem
+test {
+  systemProperty 'org.jboss.logging.provider', 'jdk'
+}
+Okazuje się, że jest artykuł na ten temat:
+http://docs.jboss.org/hibernate/orm/4.3/topical/html/logging/Logging.html
+
+}}}
+
+//compile ('org.hibernate:hibernate-core:5.2.9.Final')
+
+  private final static String CONN_STR = "jdbc:h2:mem:app2;TRACE_LEVEL_SYSTEM_OUT=1";
+    Properties props = new Properties();
+    //props.setProperty("javax.persistence.provider", "org.hibernate.jpa.HibernatePersistenceProvider");
+    props.setProperty("javax.persistence.jdbc.url", CONN_STR);
+    props.setProperty("javax.persistence.schema-generation.database.action", "create");
+    props.setProperty("hibernate.show_sql", "true");
+    EntityManager em = Persistence.createEntityManagerFactory("unitdb1", getPersistenceProps())
+      .createEntityManager();
+
+// src\main\resources\META-INF\persistence.xml
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+        version="2.0">
+    <persistence-unit name="unit">
+      <class/>
+    </persistence-unit>
+</persistence>
+
+
+}}}
+
+java logging {{{
+C:\Program Files\Java\jdk1.8.0_112\jre\lib\logging.properties
+java.util.logging.FileHandler.pattern = %h/java%u.log
+handlers= java.util.logging.FileHandler, java.util.logging.ConsoleHandler
+.level=FINEST
+java.util.logging.SimpleFormatter.format=%3$s %4$s %5$s%n
+# 0 czas, 1 czas, 2 source with fun, 3 source class only, 4 level, 5 message
+# java.util.logging.SimpleFormatter
+# String.format(, date, source, logger, level, message, thrown);
+
+}}}
+
+spring {{{
+org.springframework.web.context.support.WebApplicationContextUtils
+  .findWebApplicationContext(ServletContext sc)
+org.springframework.web.servlet.support.RequestContextUtils
+  .findWebApplicationContext(HttpServletRequest request)
+
+logging: configure apache commons-logging (below) and set environment
+  environment['logging.config'] = 'C:/Program Files/Java/logging.properties'
+
+}}}
+
+apache commons-logging {{{
+-Dorg.apache.commons.logging.diagnostics.dest=STDERR
+pozwala sprawdzić, jak wyszukuje system logowania
+org.apache.commons.logging.impl.LogFactoryImpl
+na classpath warto utworzyć plik META-INF\services\org.apache.commons.logging.LogFactory
+i do środka dać 
+bo są biblioteki, które w ten sposób przejmują sposób tworzenia logów
+w commons.
+
+Potem wystarczy utworzyć plik commons-logging.properties w classpath,
+a w nim:
+org.apache.commons.logging.LogFactory=asdf
+org.apache.commons.logging.Log=org.apache.commons.logging.impl.Jdk14Logger
+
+Także warto dać dependency do apache commons logging na samym początku
+  compile ('commons-logging:commons-logging:1.2')
+bo są takie biblioteki, które przykrywają jego LogFactory (np. org.slf4j\jcl-over-slf4j\1.7.25)
+}}}
+
+application server ee {{{
+<web-app xmlns="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+</web-app>
+}}}
+
+streams {{{
+List<Integer> alist = IntStream.rangeClosed(1, 3)
+  .mapToObj(i -> new Integer(i))
+  .collect(Collectors.toList());
+}}}
+
+jsp {{{
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"
+    import="java.util.*, java.io.*, biz.*" %>
+
+try {
+  List<Raport> raporty = (List<Raport>)request.getAttribute("raporty");
+  for(Raport r: raporty)
+    out.println("<li>" + r.nazwa + "</li>");
+} catch (IOException e) {
+  e.printStackTrace();
+}
+
+}}}
+
+jaxrs {{{
+    //'org.glassfish.jersey.core:jersey-client:2.0.1'
+    import javax.ws.rs.client.ClientBuilder;
+    import javax.ws.rs.core.Response;
+    Response resp = ClientBuilder.newClient()
+      .target("http://localhost:" + port + "/view")
+      .request()
+      .get();
+    String respText = resp.readEntity(String.class);
+}}}
+
+aspectj {{{
+  compile 'org.aspectj:aspectjrt:1.8.10'
+    @Aspect
+    public class EqualsAspect {
+      @Before(value = "call(* equals*(..))")
+      public void forEquals(JoinPoint jp)
+      {
+        Logger.getLogger("bs").info("aspected equals: " + jp.getSignature());
+      }
+    }
+  -javaagent:pathto/aspectjweaver.jar
+  META-INF/aop.xml
+    <aspectj>
+    	<aspects>
+    		<aspect name="EqualsAspect" />
+    	</aspects>
+    	<weaver options="-verbose" />
+    </aspectj>
+  przy uruchamianiu programu zgłosi się weaver
+}}}
+
+eclipse {{{
+quick bookmarks (from eclipse)
+duplicate line ctrl-alt-down (up)
+block column (rectangular mode) alt-shift-a
+}}}
+
+eclipselink {{{
+    <property name="eclipselink.cache.shared.default" value="false"/>
+    <property name="eclipselink.query-results-cache" value="false"/>
+    <property name="eclipselink.logging.logger" value="JavaLogger"/>
+
+}}}

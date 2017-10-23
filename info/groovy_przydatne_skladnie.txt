@@ -1,0 +1,34 @@
+Pattern, regular expressions, regex {{{
+      def m = it =~ /Attribute\("([0-9]+\.[0-9]+\.[0-9]+)\./
+      if (m.find())
+        println "wersja: " + m.group(1)
+// Uwaga na backreference - potrzebny escape groovy dollar GString
+s = s.replaceAll("(  nazwa=.{41}).*", "\$1")
+
+}}}
+
+@groovy.transform.CompileStatic
+
+    def fac = DocumentBuilderFactory.newInstance()
+    def builder = fac.newDocumentBuilder()
+    def xml = builder.parse(new ByteArrayInputStream(sXml.getBytes("UTF-8")))
+
+inicjalizacja tablicy obiektów {{{
+@groovy.transform.Canonical
+class Rap
+{
+  String Nazwa
+  String NazwaOryg
+  String Wersja
+}
+
+Rap[] aRap = [
+  ["dokPW1MB.sc", "dokpw1.sc", "131b"]
+]
+}}}
+
+  def proc = new ProcessBuilder("app.exe").start()
+  proc.consumeProcessOutput(System.out, System.out)
+  lub
+  proc.waitForProcessOutput(System.out, System.out)
+

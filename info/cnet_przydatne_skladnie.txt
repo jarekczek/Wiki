@@ -1,0 +1,255 @@
+System.Windows.Forms.MessageBox.Show("halo");
+System.Console.WriteLine("uzycie");
+Console.WriteLine(System.Environment.StackTrace);
+System.Diagnostics.Process.Start(@"d:\program_files\espeak\command_line\espeak.exe", "task");
+int x = Convert.ToInt32(v); // conversion, data types, double, float
+typeof(System.Object) - zwraca obiektu typu Type, ten sam, co GetType()
+zamiast %05l: String.Format("{0:D5}", n); n.ToString("D5");
+        Decimal: {0:0.00} lub ToString("0.00")
+System.DateTime.Now.ToString("yyyy-MM-dd")
+wart.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+Convert.ToDecimal(sLiczba, System.Globalization.CultureInfo.InvariantCulture);
+Math.Round(x)
+System.Threading.Thread.Sleep(2000)
+System.Diagnostics.Debug.Assert(1 == 1, "1 is sane");
+sAppDir = new System.IO.FileInfo(System.Reflection.Assembly
+  .GetExecutingAssembly().Location).DirectoryName;
+sWersja = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+Assembly.GetExecutingAssembly().GetManifestResourceStream("project.x.txt")
+
+    var encUtf = new System.Text.UTF8Encoding();
+    var enc1250 = System.Text.Encoding.GetEncoding(1250);
+    string sTpl = encUtf.GetString((byte[])res);
+
+regex {{{   
+    var reg = new System.Text.RegularExpressions.Regex("/([0-9][0-9])-\d{4}");
+    var m = reg.Match(sNrEwid);
+    if (!m.Success)
+      return null;
+    return m.Groups[1].Value;
+
+    sNr = new Regex("/[A-Z][12]?$").Replace(sNr, ""); // $1 zastępuje wyr. 1
+}}}
+
+indexer: public Row this[Date dt] { get; set; }
+
+p.ZajęciaKomornicze.GetRowType().ToString()
+foreach (Soneta.Kadry.ZajęcieKomornicze z in p.ZajęciaKomornicze) {
+
+append to text file {{{
+  var sw = System.IO.File.AppendText(@"c:\temp\1\debug.txt");
+  sw.WriteLine("start");
+  sw.Close();
+}}}
+
+class BsSchowek {
+[System.STAThreadAttribute]
+public static int Main(string[] args) {
+  return 0;
+}
+}
+
+enova {{{
+
+Soneta.Types.FromTo.Month(2014,3);
+ft.Intersection(okr).IsNull - nie porównujemy z nullem wyniku Intersection
+
+	using (new Soneta.Forms.Progress("Test prog")) {
+	  using (new Soneta.Forms.WaitCursor()) {
+      var log = new Soneta.Business.Log();
+      log.WriteLine("oho");
+    }
+  }
+
+view, condition {{{
+      var v = ks.RaportyESP.CreateView();
+      v.Condition =
+        new FieldCondition.Equal("Kasa.Typ", "Kasa")
+        & new FieldCondition.Equal("Kasa.Waluta", "PLN");
+}}}
+
+przykladowy program do skompilowania przez csc {{{
+class CHello {
+[System.STAThreadAttribute]
+public static int Main(string[] args) {
+  System.Diagnostics.Trace.Listeners.Add(
+    new System.Diagnostics.ConsoleTraceListener());
+  System.Console.Write("main ");
+  Soneta.Start.Loader loader = new Soneta.Start.Loader();
+  loader.WithExtensions = false;
+  loader.WithExtra = false;   
+  loader.Load();
+  System.Console.Write("loaded ");
+
+  var db = Soneta.Business.App.BusApplication.Instance["Symfonia KD 2013.1.a"];
+  System.Console.Write("db ");
+  //System.Console.WriteLine(x.GetType().ToString());
+  var login = db.Login(false, "Administrator", "");
+  var session = login.CreateSession(false, false);
+  System.Console.WriteLine("logged in");
+
+  var kd = Soneta.Kadry.KadryModule.GetInstance(session);
+  var pl = Soneta.Place.PlaceModule.GetInstance(session);
+  var view = kd.Pracownicy.CreateView();
+  foreach (Soneta.Kadry.Pracownik prac in view) {
+    //System.Console.WriteLine(prac.ToString());
+  }
+
+  foreach (Soneta.Place.ListaPlac x in pl.ListyPlac) {
+    //System.Console.WriteLine(x.Numer + " " + x.Data);
+  }
+
+  System.Console.Write("disposing ");
+  if (login != null) login.Dispose();
+  System.Console.Write("done ");
+  System.Environment.Exit(0);
+  return 0;
+}
+}
+}}}
+skrypt kompilujacy {{{
+@echo off
+set name=hello
+set csc=C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe
+set soneta=C:\Program Files (x86)\Soneta\enova 10.4.5291\
+set refs="%soneta%\Soneta.Business.dll"
+set refs=%refs%,"%soneta%\Soneta.Start.dll"
+set refs=%refs%,"%soneta%\Soneta.Core.dll"
+set refs=%refs%,"%soneta%\Soneta.KadryPlace.dll"
+set refs=%refs%,"%soneta%\Soneta.Kasa.dll"
+set refs=%refs%,"%soneta%\Soneta.Types.dll"
+%csc% /debug+ /r:%refs% %name%.cs
+if errorlevel 1 exit 1
+copy %name%.exe "%soneta%"
+"%soneta%\%name%.exe"
+}}}
+
+worker dokumentu handlowego - tworzy przyjęcia opakowań {{{
+wpublic override void Action() {
+  var log = new Soneta.Business.Log("Bonsoft");
+	var hm = HandelModule.GetInstance(Session);
+	var dokw = (Soneta.Handel.DokumentHandlowy)RowInternal;
+	if (!dokw.Zatwierdzony)
+	  return;
+	if (!dokw.Definicja.Symbol.Equals("WO"))
+	  return;
+	//System.Diagnostics.Process.Start(@"d:\program_files\espeak\command_line\espeak.exe", "task");
+	DokumentHandlowy dokn = null;
+	foreach(DokumentHandlowy d in dokw.Nadrzędne) dokn = d;
+	if (dokn == null)
+	  return;
+	// Mamy dokument nadrzędny - fakturę sprzedaży.
+	foreach(DokumentHandlowy d in dokn.Podrzędne) {
+		log.WriteLine("dokument w grupie: " + d);
+		if (d.Definicja.Symbol.Equals("PO")) {
+			log.WriteLine("Do dokumentu " + dokw + " już istnieje PO: " + d);
+			return;
+    }
+	}
+	log.WriteLine("Dokument nadrzędny: " + dokn);
+
+	using (var trans = Session.Logout(true)) {
+  foreach(Soneta.Handel.DefRelacjiHandlowej defRel in dokn.Definicja.Podrzedne) {
+    if (defRel.DefinicjaPodrzednego.Symbol.Equals("PO")) {
+      var defRelKop = (Soneta.Handel.DefRelacjiKopiowania)defRel;
+      var cx = Soneta.Business.Context.Empty.Clone(Session);
+      var dd = new Soneta.Handel.DokumentDocelowy(new DokumentHandlowy[] {dokn}, defRel, false, 1, cx);
+      var dokpo = defRelKop.GenerujNowy(dokn, dd);
+			log.WriteLine("SUKCES!!! " + dokpo + ", ale kraj: " + dokpo.KrajPodatkuVat + "/" + dokw.KrajPodatkuVat);
+			foreach(PozycjaDokHandlowego pozw in dokw.Pozycje) {
+				var poz = new PozycjaDokHandlowego(dokpo);
+				hm.PozycjeDokHan.AddRow(poz);
+				poz.Towar = pozw.Towar;
+				poz.Ilosc = new Quantity((Double)(pozw.Features["ilość przyjmowana"]));
+			}
+			dokpo.Stan = StanDokumentuHandlowego.Zatwierdzony;
+    }
+  }
+	trans.CommitUI();
+	}
+}
+}}}
+wyliczenie wartości cechy - bilansu opakowania {{{
+public Amount Feature_Aktualny_bilans_opakowania(Amount value)
+{
+		System.Diagnostics.Process.Start(@"d:\program_files\espeak\command_line\espeak.exe", "amount");
+    var tow = Row.Towar;
+		var kontr = Row.Dokument.Kontrahent;
+    var log = new Soneta.Business.Log("Bonsoft");
+		foreach(Soneta.Towary.BilansOpakowańKontrahenciWorker.BilansOpakowańKontrahentaItem b
+		        in tow.BilansOpakowańWgKontrahentów) {
+		  if (b.Kontrahent == kontr)
+		    return new Amount(b.IlośćDoRozliczenia);
+		}
+    return Amount.Zero;
+}
+}}}
+okna dialogowe {{{
+		public System.Collections.Generic.List<string> GetListNazwaKolumny()
+    {
+      var lst = new System.Collections.Generic.List<string>();
+      lst.Add("Dodatek A");
+      lst.Add("Dodatek B");
+      return lst;
+    }
+
+    [ControlEdit(ControlEditKind.ComboBox)]
+    public string NazwaKolumny { get; set; }
+}}}
+
+aspx {{{
+  zmienna dc jest typu Soneta.Web.DataContext
+}}}
+
+}}}
+
+ilasm {{{
+
+
+      IL_0048:  callvirt   instance string [mscorlib]System.Exception::get_StackTrace()
+
+}}}
+
+com server activex {{{
+C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\guidgen.exe
+
+}}}
+
+msbuild {{{
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe
+
+  <ItemGroup>
+    <EmbeddedResource Include="Bonsoft.HandelEksporter.Config.xx.pageform.xml" />
+  </ItemGroup>
+
+}}}
+
+configuration, appsettings {{{
+add reference to System.Configuration.dll
+
+App.config:
+
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key="enova_db_name" value="demo"/>
+    <add key="enova_user" value="Administrator"/>
+    <add key="enova_pass" value=""/>
+  </appSettings>
+</configuration>
+
+      var seti = System.Configuration.ConfigurationManager.AppSettings;
+      string sDb = seti["enova_db_name"].ToString();
+
+
+}}}
+
+xml {{{
+  var ser = new System.Xml.Serialization.XmlSerializer(
+                this.GetType());
+  var sett = new System.Xml.XmlWriterSettings();
+  sett.Indent = true;
+  var writer = System.Xml.XmlWriter.Create(sFile, sett);
+  ser.Serialize(writer, this);
+  writer.Close();
+}}}
