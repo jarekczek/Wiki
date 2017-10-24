@@ -34,3 +34,15 @@ Rap[] aRap = [
 
   def proc = "repeat.bat >out.txt".execute()
   // Tworzy proces, uruchamia i idzie dalej.
+  
+boolean portOpen(int port) //{{{
+{
+  Socket socket
+  boolean ok = false
+  try {
+    socket = new Socket("localhost", port)
+	ok = true
+	socket.close()
+  } catch (IOException e){}
+  return ok
+} //}}}
