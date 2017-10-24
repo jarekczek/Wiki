@@ -6,6 +6,7 @@ repositories {
 
 dependencies {
   compile 'org.glassfish.jersey.core:jersey-client:2.0.1'
+  compile 'org.glassfish:javax.json:1.0.3'
 }
 
 defaultTasks 'cp'

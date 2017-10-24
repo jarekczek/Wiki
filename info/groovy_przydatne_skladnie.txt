@@ -32,3 +32,5 @@ Rap[] aRap = [
   lub
   proc.waitForProcessOutput(System.out, System.out)
 
+  def proc = "repeat.bat >out.txt".execute()
+  // Tworzy proces, uruchamia i idzie dalej.
