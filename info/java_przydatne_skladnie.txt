@@ -122,6 +122,26 @@ java.util.logging.SimpleFormatter.format=%3$s %4$s %5$s%n
 # java.util.logging.SimpleFormatter
 # String.format(, date, source, logger, level, message, thrown);
 
+log4j {{
+  Jest wersja 1 i 2, dlatego najlepiej ustawić oba parametry przy problemach:
+  -Dlog4j.debug=true -Dlog4j2.debug=true
+  Potem już jest łatwo, bo widać, który plik konfiguracyjny jest czytany.
+  log4j1.2 faq: http://logging.apache.org/log4j/1.2/faq.html
+    https://logging.apache.org/log4j/1.2/manual.html
+	najprostszy konfig wersji 1.2: {{{
+	# Set root logger level to DEBUG and its only appender to A1.
+	log4j.rootLogger=DEBUG, A1
+
+	# A1 is set to be a ConsoleAppender.
+	log4j.appender.A1=org.apache.log4j.ConsoleAppender
+
+	# A1 uses PatternLayout.
+	log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+	log4j.appender.A1.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
+    }}}
+	
+}}
+
 }}}
 
 spring {{{
