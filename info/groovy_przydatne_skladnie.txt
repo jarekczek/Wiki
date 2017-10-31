@@ -32,8 +32,15 @@ Rap[] aRap = [
   lub
   proc.waitForProcessOutput(System.out, System.out)
 
-  def proc = "repeat.bat >out.txt".execute()
+  // Inny wariant.
+  def cmd = ['sh', '-c', 'echo $PATH']
+  def proc = new ProcessBuilder(cmd)
+    .directory(projectDir)
+    .start()
+  proc.waitForProcessOutput(System.out, System.out)
+
   // Tworzy proces, uruchamia i idzie dalej.
+  def proc = "repeat.bat >out.txt".execute()
   
 boolean portOpen(int port) //{{{
 {
