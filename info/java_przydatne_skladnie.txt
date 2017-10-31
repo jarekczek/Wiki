@@ -225,3 +225,5 @@ eclipselink {{{
     <property name="eclipselink.logging.logger" value="JavaLogger"/>
 
 }}}
+
+debugger: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7778
