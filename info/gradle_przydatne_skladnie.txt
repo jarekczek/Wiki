@@ -117,6 +117,12 @@ tasks.eclipse {
 //gradle cleanEclipse eclipse
 }}}
 
+intellij {{{
+apply plugin: 'idea'
+idea.module.downloadJavadoc = true
+//        downloadSources = true
+}}}
+
 war {{{
 apply plugin: 'war'
 task glass (type:Exec, dependsOn: 'war') {
