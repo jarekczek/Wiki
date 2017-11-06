@@ -53,6 +53,8 @@ dependencies {
   compile 'net.sourceforge.htmlunit:htmlunit:2.26'
   serverDeps 'org.glassfish.jersey.core:jersey-client:2.0.1'
   compile configurations.bootCommon
+  
+  testCompile files('C:\\IBM\\fe\\java-libs\\junit-4.12.jar')
 }
 mainClassName = 'groovycrm.EmailParser'
 
@@ -144,3 +146,7 @@ task glass (type:Exec, dependsOn: 'war') {
       'D:\\Program_Files\\eSpeak\\command_line\\espeak.exe fadle'.execute()
     }
   }
+
+--offline switch can be forced by configuration file:
+  init.gradle in the same directory as gradle.properties (~/.gradle)
+  startParameter.offline=true
