@@ -26,7 +26,7 @@ dependencies {
   compile 'org.slf4j:slf4j-jdk14:1.7.25'
   compile 'org.slf4j:slf4j-api:1.7.21',
   compile 'org.codehaus.groovy:groovy-all:2.4.7',
-  compile 'net.sf.ucanaccess:ucanaccess:+'
+  compile 'net.sf.ucanaccess:ucanaccess:+' // newest version
   compile 'javax.servlet:javax.servlet-api:3.1.0'
   compile 'javax:javaee-api:7.0'
   compile 'org.aspectj:aspectjrt:1.8.10'
