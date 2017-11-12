@@ -1,3 +1,7 @@
 git rebase -i HEAD~2 : delete commits interactively
 git push origin +master : nadpisanie brancha master po usunięciu commitu lokalnie
 
+git init --bare
+
+git log --graph
+git log --stat / --summary : pokaz liste plikow
