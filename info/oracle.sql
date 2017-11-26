@@ -17,3 +17,11 @@ select * from all_tables where rownum < 20
 ;
 
 quit;
+
+
+alter session set current_schema = jarek;
+
+-- znajdz nieciaglosci w id (lead/lag)
+select e.employee_id as empid,
+  lead(employee_id, 1, null) over (order by employee_id asc) as nast
+from hr.employees e
