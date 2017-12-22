@@ -15,3 +15,7 @@ object Main /* singleton class */
     println(conv.getHello(3))
   }
 }
+
+java -> scala {{{
+  Object.class -> classOf[Object]
+}}}

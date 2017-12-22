@@ -25,3 +25,10 @@ alter session set current_schema = jarek;
 select e.employee_id as empid,
   lead(employee_id, 1, null) over (order by employee_id asc) as nast
 from hr.employees e
+
+-- ostatnie query
+select to_char(sql.LAST_ACTIVE_TIME, 'yy-mm-dd hh24:mi:ss')
+, sql.* from v$sql sql
+order by sql.LAST_ACTIVE_TIME desc
+;
+
