@@ -128,7 +128,7 @@ log4j {{
   Potem już jest łatwo, bo widać, który plik konfiguracyjny jest czytany.
   log4j1.2 faq: http://logging.apache.org/log4j/1.2/faq.html
     https://logging.apache.org/log4j/1.2/manual.html
-	najprostszy konfig wersji 1.2: {{{
+	najprostszy konfig wersji 1.2 (log4j.properties): {{{
 	# Set root logger level to DEBUG and its only appender to A1.
 	log4j.rootLogger=DEBUG, A1
 
@@ -138,9 +138,12 @@ log4j {{
 	# A1 uses PatternLayout.
 	log4j.appender.A1.layout=org.apache.log4j.PatternLayout
 	log4j.appender.A1.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
+	
+	# Set level of chosen class
+	log4j.pl.jarek.pakiet=DEBUG, A1
     }}}
 	
-	prosty config do wersji 2: {{{
+	prosty config do wersji 2: log4j2.properties / log4j2-test.properties {{{
 
 	filter.threshold.type = ThresholdFilter
 	filter.threshold.level = debug
@@ -163,6 +166,8 @@ log4j {{
 	logger.spring.level = debug
 	}}}
 	
+	log4j2 rekonfiguracja:
+	((org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false)).reconfigure();
 }}
 
 }}}

@@ -5,3 +5,5 @@ git init --bare
 
 git log --graph
 git log --stat / --summary : pokaz liste plikow
+
+git diff --cached
