@@ -1,6 +1,8 @@
 git rebase -i HEAD~2 : delete commits interactively
 git push origin +master : nadpisanie brancha master po usunięciu commitu lokalnie
 
+git branch -u xxx  - wybranie gałęzi do śledzenia
+
 git diff --cached
 
 git init --bare
@@ -8,16 +10,42 @@ git init --bare
 git checkout -- . : revert unstaged files under current dir
 git checkout -b xxx - create branch
 
+git cherry-pick -n : nie komituj
+git cherry-pick -x : dodaj fajny message cherry-picked
+
 git clean -f : remove untracked files, -d directories
 
+git log --author Kowalski
 git log --graph
 git log --stat / --summary / --name-status: pokaz liste plikow
 git log rev1..rev2 --ancestry-path
+git log -- .
+git log --until="1/1/2016"
+git log --name-status - lista plikow
+git log 4e96edf64ed7e06902be81..origin/feature/MOK_SpringBoot --ancestry-path --reverse - od danego commit do przodu
+git log --first-parent : tylko bieżący branch
+
+git ls-files
+
+git merge FETCH_HEAD : ???
+
+git pull --rebase
 
 git reset HEAD : unstage everything
+git reset --hard HEAD~1 - usuwa do poprzedniego commitu
+
+git rm --cached : ???
+
+git flow:
+------------
+git checkout -b feature/x
+git push -u origin feature/x (u żeby śledził branch)
+git push origin --delete feature/xxxxx - delete remote branch
 
 How to:
+------------
 
 delete untracked files : git clean -f
 unstage files : git reset HEAD
 revert files : git checkout -- .
+find branch source: git merge-base master feature/ben
