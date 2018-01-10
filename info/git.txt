@@ -1,9 +1,23 @@
 git rebase -i HEAD~2 : delete commits interactively
 git push origin +master : nadpisanie brancha master po usunięciu commitu lokalnie
 
+git diff --cached
+
 git init --bare
 
-git log --graph
-git log --stat / --summary : pokaz liste plikow
+git checkout -- . : revert unstaged files under current dir
+git checkout -b xxx - create branch
 
-git diff --cached
+git clean -f : remove untracked files, -d directories
+
+git log --graph
+git log --stat / --summary / --name-status: pokaz liste plikow
+git log rev1..rev2 --ancestry-path
+
+git reset HEAD : unstage everything
+
+How to:
+
+delete untracked files : git clean -f
+unstage files : git reset HEAD
+revert files : git checkout -- .

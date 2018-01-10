@@ -150,3 +150,9 @@ task glass (type:Exec, dependsOn: 'war') {
 --offline switch can be forced by configuration file:
   init.gradle in the same directory as gradle.properties (~/.gradle)
   startParameter.offline=true
+
+task run (type:JavaExec) {
+  classpath = sourceSets.main.runtimeClasspath
+  main = JakasKlasa
+  jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7778"
+}
