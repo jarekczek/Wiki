@@ -1,4 +1,45 @@
-var http = require('http');
+<h2>Javascript</h2>
+<a href="file:///C:/Program_Files/docs/javascript/DOM_level1/level-one-core.html">dom level 1 - core</a><br/>
+<a href="file:///C:/Program_Files/docs/javascript/DOM_level1/level-one-html.html">dom level 1 - html</a><br/>
+<a href="file:///D:/instal/lang/javascript/ecma_spec_7.html">ecma spec</a><br/>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">mozilla XMLHttpRequest</a><br/>
+<a href="https://www.w3schools.com/jsref/default.asp">w3schools ref</a><br/>
 
 console.log(typeof o);
+
+var http = require('http');
+
+document.querySelector('#pdflink').href = 'http://bonsoft.pl';
+
+
+// Utworzenie linka z zawartością poprzez javascript:
+    <p>
+      <!-- <a id="pdflink">Pasek PDF</a> -->
+      <a id="pdflink">link</a>
+    </p>
+    <script>
+      //https://blog.jayway.com/2017/07/13/open-pdf-downloaded-api-javascript/
+      var linkElem = document.querySelector('#pdflink')
+      var filename = "pasek.txt";
+      var forceDownload = ( filename != null );
+      if (forceDownload)
+        linkElem.download = filename;
+      var blob = new Blob(["napis"], {type: "text/plain"});
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        // IE.
+        //https://stackoverflow.com/a/24354303/772981
+        //linkElem.download = filename;
+        linkElem.href = '#';
+        linkElem.onclick = function() {
+          if (forceDownload)
+            window.navigator.msSaveOrOpenBlob(blob, filename);
+          else
+            window.navigator.msSaveOrOpenBlob(blob);
+        }
+      } else {
+        // Firefox, Chrome.
+        var objectUrl = window.URL.createObjectURL(blob);
+        document.querySelector('#pdflink').href = objectUrl;
+      }
+    </script>
 

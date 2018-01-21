@@ -44,3 +44,10 @@ join v$sql sql on se.SQL_id = sql.sql_id
 where se.program = 'sqlplus.exe'
 order by se.LOGON_TIME desc
 ;
+
+--How to add a hint to ORACLE query without touching its text
+--http://intermediatesql.com/oracle/how-to-add-a-hint-to-oracle-query-without-touching-its-text/
+--How to fix CPU usage problem in 12c due to DBMS_FEATURE_AWR
+--http://www.ludovicocaldara.net/dba/cpu-usage-12c-dbms_feature_awr/
+--https://stackoverflow.com/questions/14043668/oracle-updates-inserts-stuck-db-cpu-at-100-concurrency-high-sqlnet-wait-mes
+--http://www.dba-oracle.com/t_sql_causing_high_cpu.htm (v$sqlarea)
