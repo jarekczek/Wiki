@@ -283,3 +283,16 @@ radzi takie booki:
   Core Java Server Faces (3rd Edition), by David Geary, Cay S. Horstman
   JavaServer Faces 2.0, The Complete Reference, by Ed Burns and Chris Schalk
 }}}
+
+jaxb {{{
+  private JAXBContext ctx;
+  try {
+    ctx = JAXBContext.newInstance(Deklaracja.class);
+    Marshaller mar = ctx.createMarshaller();
+    mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+    mar.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+    mar.marshal(d, str);
+  } catch (JAXBException e) {
+    throw new RuntimeException(e);
+  }  
+}}}
