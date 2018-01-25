@@ -275,3 +275,24 @@ eclipselink {{{
 }}}
 
 debugger: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7778
+
+jsf {{{
+tag reference: https://docs.oracle.com/cd/E17802_01/j2ee/javaee/javaserverfaces/2.0/docs/pdldocs/facelets/
+fajny wideo tutek: http://www.programming-simplified.com/jsf_video_training.html
+radzi takie booki:
+  Core Java Server Faces (3rd Edition), by David Geary, Cay S. Horstman
+  JavaServer Faces 2.0, The Complete Reference, by Ed Burns and Chris Schalk
+}}}
+
+jaxb {{{
+  private JAXBContext ctx;
+  try {
+    ctx = JAXBContext.newInstance(Deklaracja.class);
+    Marshaller mar = ctx.createMarshaller();
+    mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+    mar.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+    mar.marshal(d, str);
+  } catch (JAXBException e) {
+    throw new RuntimeException(e);
+  }  
+}}}

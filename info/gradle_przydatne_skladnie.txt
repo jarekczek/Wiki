@@ -70,6 +70,10 @@ tasks.withType(Test) {
 // gradle test -Dtest.single=Class // looks for **/Class*.class
 // gradle test --tests *MojTest.nipZData
 
+tasks.withType(JavaCompile) {
+  options.encoding = "utf-8"
+}
+
 tasks.withType(Javadoc) {
   options.encoding "utf-8"
   options.charSet "utf-8"
