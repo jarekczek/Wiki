@@ -65,18 +65,10 @@ declare sqlId varchar(2000);
   lastActive2 timestamp;
 	c number;
 begin
---sqlId :=
-select sql_id into sqlId from v$sql
-where sql_text like '%RESULT NOT IN (''zak_sys''%'
-and sql_text not like tutaj_fragment_naszego_query(uwaga, kursor może podnieść do UPPER)
-group by sql_id
-;
-DBMS_OUTPUT.PUT_LINE(concat('sql id: ', sqlId));
 
-select max(last_active_time) into lastActive1
-from v$sql where sql_id = sqlId;
-
-DBMS_OUTPUT.PUT_LINE(concat('last active: ', lastActive1));
+DBMS_OUTPUT.PUT_LINE('dzien dobry');
+select current_timestamp into lastActive1 from v$sql where rownum < 2;
+DBMS_OUTPUT.PUT_LINE(concat('teraz: ', lastActive1));
 
 c := 0;
 FOR v_rec IN (
@@ -86,10 +78,8 @@ FOR v_rec IN (
 END LOOP;
 DBMS_OUTPUT.PUT_LINE(concat('liczba rekordow: ', c));
 
-select max(last_active_time) into lastActive2
-from v$sql where sql_id = sqlId;
+select current_timestamp into lastActive2 from v$sql where rownum < 2;
 
-DBMS_OUTPUT.PUT_LINE(concat('last active: ', lastActive2));
 DBMS_OUTPUT.PUT_LINE(concat('duration: ', lastActive2 - lastActive1));
 
 end;
