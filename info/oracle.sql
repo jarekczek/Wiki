@@ -54,3 +54,48 @@ order by se.LOGON_TIME desc
 --http://www.ludovicocaldara.net/dba/cpu-usage-12c-dbms_feature_awr/
 --https://stackoverflow.com/questions/14043668/oracle-updates-inserts-stuck-db-cpu-at-100-concurrency-high-sqlnet-wait-mes
 --http://www.dba-oracle.com/t_sql_causing_high_cpu.htm (v$sqlarea)
+
+-- mierzenie czasu wykonania danego query {{{
+set linesize 30000;
+set pagesize 10000;
+set serveroutput on;
+
+declare sqlId varchar(2000);
+  lastActive1 timestamp;
+  lastActive2 timestamp;
+	c number;
+begin
+--sqlId :=
+select sql_id into sqlId from v$sql
+where sql_text like '%RESULT NOT IN (''zak_sys''%'
+and sql_text not like tutaj_fragment_naszego_query(uwaga, kursor może podnieść do UPPER)
+group by sql_id
+;
+DBMS_OUTPUT.PUT_LINE(concat('sql id: ', sqlId));
+
+select max(last_active_time) into lastActive1
+from v$sql where sql_id = sqlId;
+
+DBMS_OUTPUT.PUT_LINE(concat('last active: ', lastActive1));
+
+c := 0;
+FOR v_rec IN (
+	select tutaj_nasze_query
+) LOOP
+  c := c + 1;
+END LOOP;
+DBMS_OUTPUT.PUT_LINE(concat('liczba rekordow: ', c));
+
+select max(last_active_time) into lastActive2
+from v$sql where sql_id = sqlId;
+
+DBMS_OUTPUT.PUT_LINE(concat('last active: ', lastActive2));
+DBMS_OUTPUT.PUT_LINE(concat('duration: ', lastActive2 - lastActive1));
+
+end;
+/
+
+--select * from v$sql where sql_id = '269bxvthmfwq1';
+
+quit;
+}}}
