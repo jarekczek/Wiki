@@ -1,7 +1,7 @@
 git rebase -i HEAD~2 : delete commits interactively
 git push origin +master : nadpisanie brancha master po usunięciu commitu lokalnie
 
-git branch -u xxx  - wybranie gałęzi do śledzenia
+git branch -u xxx  - wybranie gałęzi do śledzenia (upstream)
 
 git diff --cached
 
@@ -35,6 +35,11 @@ git reset HEAD : unstage everything
 git reset --hard HEAD~1 - usuwa do poprzedniego commitu
 
 git rm --cached : ???
+
+git stash list
+git stash pop
+git stash push -m...
+git stash show -p 0 : pokaż ostatni stash
 
 git flow:
 ------------

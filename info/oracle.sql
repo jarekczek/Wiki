@@ -3,11 +3,14 @@ set pagesize 10000;
 set serveroutput on;
 
 declare x varchar2(20000);
+  sqlId varchar(2000);
 begin
   for i in 1..3 loop
     x := concat(x, '1234567890');
     DBMS_OUTPUT.PUT_LINE(concat('x:', x));
   end loop;
+
+	select sql_id into sqlId from v$sql where sql_text like '%RESULT not in (''zak_sys''%';
 end;
 /
 
