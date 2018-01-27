@@ -31,6 +31,22 @@ regex {{{
     sNr = new Regex("/[A-Z][12]?$").Replace(sNr, ""); // $1 zastępuje wyr. 1
 }}}
 
+invoke private member {{{
+using System.Reflection;
+      wys.GetType().InvokeMember(
+        "WyslijPlikMailem",
+        BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.InvokeMethod,
+        null,
+        wys,
+        args
+      );
+}}}
+
+create activex object {{{
+      var outlookType = Type.GetTypeFromProgID("Outlook.Application");
+      Activator.CreateInstance(outlookType);
+}}}
+
 indexer: public Row this[Date dt] { get; set; }
 
 p.ZajęciaKomornicze.GetRowType().ToString()
