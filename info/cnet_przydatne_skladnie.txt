@@ -33,13 +33,9 @@ regex {{{
 
 invoke private member {{{
 using System.Reflection;
-      wys.GetType().InvokeMember(
-        "WyslijPlikMailem",
-        BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.InvokeMethod,
-        null,
-        wys,
-        args
-      );
+      var method = wys.GetType().GetMethod("ZaszyfrujPlik",
+        BindingFlags.NonPublic | BindingFlags.Instance);
+      method.Invoke(wys, args);
 }}}
 
 create activex object {{{

@@ -1,0 +1,27 @@
+import base64
+print(base64.standard_b64decode(bytes('bXlzcWw6Ly9qNjQwODlydzpJZGt3cElzY2Z0UldhQG15c3FsLWovajY0MDg5X3BsdWdpbl9jZW50cmFs', 'ascii')));
+
+random password {{{
+import random
+
+random.seed()
+nLen = 10
+
+chars = []
+for i in range(ord('A'), ord('Z')):
+  chars.append(chr(i))
+for i in range(ord('a'), ord('z')):
+  chars.append(chr(i))
+chars.remove('l') # small L is stupid
+for i in range(ord('0'), ord('9')):
+  chars.append(chr(i))
+for ch in "!@#$%^&*()_+-=":
+  chars.append(ch)
+# for ch in chars:
+  # print(ch+' ', end='')
+# print()
+
+for i in range(nLen):
+  print (chars[random.randint(0, len(chars)-1)], end='')
+print()
+}}}
