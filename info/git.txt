@@ -15,6 +15,9 @@ git cherry-pick -x : dodaj fajny message cherry-picked
 
 git clean -f : remove untracked files, -d directories
 
+git config -e
+git config --global -e
+
 git log --author Kowalski
 git log --graph
 git log --stat / --summary / --name-status: pokaz liste plikow
