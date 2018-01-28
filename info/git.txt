@@ -17,6 +17,11 @@ git clean -f : remove untracked files, -d directories
 
 git config -e
 git config --global -e
+[credential]
+  username = jarekczek
+[user]
+	name = jarekczek
+	email = jarekczek@poczta.onet.pl
 
 git log --author Kowalski
 git log --graph
