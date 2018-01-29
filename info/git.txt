@@ -36,6 +36,7 @@ git log --first-parent : tylko bieżący branch
 git ls-files
 
 git merge FETCH_HEAD : ???
+git config --global merge.conflictstyle diff3
 
 git pull --rebase
 

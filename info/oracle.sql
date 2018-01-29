@@ -48,6 +48,10 @@ where se.program = 'sqlplus.exe'
 order by se.LOGON_TIME desc
 ;
 
+-- index hint
+select /*+ index(a IDX_APP_APP_NUMBER) index(mc IDX_MOK_CALL_APPID_CT)*/ a.application_number, a.application_date, a.PRODUCT, a.APPLICATION_TYPE, api.sap, mc.*
+from mok.mok_call mc, mok.application a, mok.api 
+
 --How to add a hint to ORACLE query without touching its text
 --http://intermediatesql.com/oracle/how-to-add-a-hint-to-oracle-query-without-touching-its-text/
 --How to fix CPU usage problem in 12c due to DBMS_FEATURE_AWR
@@ -89,3 +93,6 @@ end;
 
 quit;
 }}}
+
+alter sequence dict_seq increment by 1;
+select dict_seq.nextval from dual;
