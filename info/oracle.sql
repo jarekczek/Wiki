@@ -1,3 +1,6 @@
+-- backup and restore using rman:
+-- https://logicalread.com/backup-restore-scripts-rman-oracle-mc05/#.WnDlFHndggA
+
 set linesize 30000;
 set pagesize 10000;
 set serveroutput on;
