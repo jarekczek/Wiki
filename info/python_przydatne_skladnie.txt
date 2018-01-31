@@ -1,6 +1,13 @@
 import base64
 print(base64.standard_b64decode(bytes('bXlzcWw6Ly9qNjQwODlydzpJZGt3cElzY2Z0UldhQG15c3FsLWovajY0MDg5X3BsdWdpbl9jZW50cmFs', 'ascii')));
 
+dict literal:
+d = { 'one': '1', 'two': '2' }
+d = dict(one='1', two='2')
+
+dir(object) - pokazuje info o danym obiekcie
+type(object) - pokazuje typ obiektu
+
 random password {{{
 import random
 

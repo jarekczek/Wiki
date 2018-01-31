@@ -24,6 +24,7 @@ git config --global -e
 	email = jarekczek@poczta.onet.pl
 
 git log --author Kowalski
+git log --grep=xxxx - pokaze tylko zawierajace w opisie tekst xxxx
 git log --graph
 git log --stat / --summary / --name-status: pokaz liste plikow
 git log rev1..rev2 --ancestry-path
