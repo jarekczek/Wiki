@@ -1,0 +1,17 @@
+WinActivate, ahk_exe %sApp%
+
+DajKodKontrZNazwy(sNazwa)
+{
+  if sNazwa contains WOŹNIAK
+    return "AUDYT WOZNIAK"
+}
+
+sNazwaKontr := "test"
+
+Send {NumpadAdd}
+Send {right 5}
+SendRaw %sKodKontr%
+
+c := c - 1
+Loop, %c%
+  Send {right}
