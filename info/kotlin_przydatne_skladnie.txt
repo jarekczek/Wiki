@@ -23,6 +23,7 @@ fun main(args: Array<String>) {
 
 java -> kotlin {{{
   Object.class -> Object::class albo Object::class.java
+  x.getClass() -> x::class
 }}}
 
 simplest gradle script {{{
