@@ -1,0 +1,21 @@
+class Conv
+{
+  def getHello(x: Int): String =
+  {
+    "hello with " + x
+  }
+}
+
+object Main /* singleton class */
+{
+  /* inside a singleton - compiles to static */
+  def main(args: Array[String])
+  {
+    val conv = new Conv
+    println(conv.getHello(3))
+  }
+}
+
+java -> scala {{{
+  Object.class -> classOf[Object]
+}}}
