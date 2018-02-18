@@ -1,21 +1,55 @@
 class Conv
 {
-  def getHello(x: Int): String =
-  {
-    "hello with " + x
+  fun getHello(x: Int) = "hello with ${x}"
+
+  fun getHello2(x: Int): String {
+    return "hello with ${2*x}"
   }
 }
 
 object Main /* singleton class */
 {
   /* inside a singleton - compiles to static */
-  def main(args: Array[String])
+  fun main(args: Array<String>)
   {
-    val conv = new Conv
-    println(conv.getHello(3))
+    val conv = Conv()
+    println(conv.getHello2(3))
   }
 }
 
-java -> scala {{{
-  Object.class -> classOf[Object]
+fun main(args: Array<String>) {
+    Main.main(args)
+}
+
+java -> kotlin {{{
+  Object.class -> Object::class albo Object::class.java
+}}}
+
+simplest gradle script {{{
+apply plugin: 'kotlin'
+
+buildscript {
+  ext.kotlin_version = '1.2.21'
+
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+}
+
+task run (type:JavaExec) {
+  classpath = sourceSets.main.runtimeClasspath
+  main = 'HelloKt'
+  jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7778"
+}
 }}}

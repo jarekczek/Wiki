@@ -157,6 +157,6 @@ task glass (type:Exec, dependsOn: 'war') {
 
 task run (type:JavaExec) {
   classpath = sourceSets.main.runtimeClasspath
-  main = JakasKlasa
+  main = 'JakasKlasa'
   jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7778"
 }
