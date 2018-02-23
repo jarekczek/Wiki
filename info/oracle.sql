@@ -99,3 +99,6 @@ quit;
 
 alter sequence dict_seq increment by 1;
 select dict_seq.nextval from dual;
+
+-- regex
+where REGEXP_LIKE(MNG_IND_CALENDAR_ENTRY_ID, '^[0-9]+$')
