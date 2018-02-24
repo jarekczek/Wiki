@@ -7,6 +7,11 @@ s = s.replaceAll("(  nazwa=.{41}).*", "\$1")
 
 }}}
 
+listy {{{
+def abc = ['a', 'b', 'c']
+assert 'a::b::c' == abc.join('::') // łączenie listy - join (concat)
+}}}
+
 @groovy.transform.CompileStatic
 
     def fac = DocumentBuilderFactory.newInstance()

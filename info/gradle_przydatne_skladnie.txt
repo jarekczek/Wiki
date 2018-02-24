@@ -69,6 +69,11 @@ tasks.withType(Test) {
 }
 // gradle test -Dtest.single=Class // looks for **/Class*.class
 // gradle test --tests *MojTest.nipZData
+task testFiltered (type: Test) {
+  filter { // dokumentacja TestFilter
+    includeTestsMatching "*.someTestMethod"
+  }
+}
 
 tasks.withType(JavaCompile) {
   options.encoding = "utf-8"
@@ -160,3 +165,8 @@ task run (type:JavaExec) {
   main = 'JakasKlasa'
   jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7778"
 }
+
+def configClosure = {
+  name = 'xxx'
+}
+configClosure.rehydrate(tasks.ssss, null, null).call()

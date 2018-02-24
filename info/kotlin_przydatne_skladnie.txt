@@ -21,9 +21,17 @@ fun main(args: Array<String>) {
     Main.main(args)
 }
 
+val f = java.io.File("""c:\temp\1\x.txt""")
+f.writeText("hi")
+println(f.readText())
+val l = listOf(1, 2, 3)
+val a = arrayOf("aaa", "b")
+
 java -> kotlin {{{
   Object.class -> Object::class albo Object::class.java
   x.getClass() -> x::class
+  x instanceof Double -> x is Double
+  for(x: lista) -> for(x in lista)
 }}}
 
 simplest gradle script {{{
