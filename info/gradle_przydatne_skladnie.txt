@@ -170,3 +170,15 @@ def configClosure = {
   name = 'xxx'
 }
 configClosure.rehydrate(tasks.ssss, null, null).call()
+
+jar { // java plugin
+  manifest {
+    attributes(
+      "Manifest-Version": "1.0",
+      "Main-Class": "jc.pbntools.PbnTools",
+      "Class-Path": configurations.compile.files.collect {
+        it.getName()
+      }.join(" ")
+    )
+  }
+}
