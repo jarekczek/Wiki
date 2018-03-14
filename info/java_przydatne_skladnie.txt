@@ -19,6 +19,8 @@
 
 Thread.sleep(5000) //ms
 
+javax.xml.bind.parseHexBinary, printHexBinary
+
 // date time java8
 String path = "kopia_jpkok_derby_" + LocalDateTime.now().format(
   DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
@@ -109,6 +111,8 @@ http://docs.jboss.org/hibernate/orm/4.3/topical/html/logging/Logging.html
     </persistence-unit>
 </persistence>
 
+obiekty w kontekscie hibernate:
+entityManager.unwrap(SessionImplementor.class).getPersistenceContext().getEntitiesByKey().keySet().stream().filter(k -> (("" + k).contains("P"))).toArray()
 
 }}}
 
@@ -167,7 +171,11 @@ log4j {{
 	}}}
 	
 	log4j2 rekonfiguracja:
-	((org.apache.logging.log4j.core.LoggerContext) LogManager.getContext(false)).reconfigure();
+	org.apache.logging.log4j.core.LoggerContext logCtx;
+	logCtx = (LoggerContext) LogManager.getContext(false);
+	logCtx.setConfigLocation(new File("C:\\log4j2.xml").toURI());
+	logCtx.reconfigure();
+	
 }}
 
 }}}
@@ -181,6 +189,12 @@ org.springframework.web.servlet.support.RequestContextUtils
 logging: configure apache commons-logging (below) and set environment
   environment['logging.config'] = 'C:/Program Files/Java/logging.properties'
 
+spring-boot {{{
+spring.jpa.open-in-view=false
+OpenEntityManagerInViewInterceptor
+JpaWebConfiguration
+}}}	
+	
 }}}
 
 apache commons-logging {{{
@@ -295,4 +309,19 @@ jaxb {{{
   } catch (JAXBException e) {
     throw new RuntimeException(e);
   }  
+}}}
+
+javadoc {{{
+{@link Klasa}
+
+ * <pre>{@code select h.id_ulicy, h.NAZWA, count(*) from hoga_ulice h, hoga_ulice h2
+ * where h2.id_ulicy = h.id_ulicy
+ * }</pre>
+
+}}}
+
+reflection {{{
+  Field f = obj.getClass().getDeclaredField("prop");
+  f.setAccessible(true);
+  f.get(obj);
 }}}

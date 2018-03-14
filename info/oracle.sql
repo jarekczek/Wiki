@@ -11,6 +11,10 @@ begin
   for i in 1..3 loop
     x := concat(x, '1234567890');
     DBMS_OUTPUT.PUT_LINE(concat('x:', x));
+    if (v_i.correct_repr is null) then
+      DBMS_OUTPUT.PUT_LINE('ERROR nieprawidlowy repr, przerywamy dla tej  umowy.');
+      continue;
+    end if;
   end loop;
 
 	select sql_id into sqlId from v$sql where sql_text like '%RESULT not in (''zak_sys''%';
@@ -50,6 +54,14 @@ join v$sql sql on se.SQL_id = sql.sql_id
 where se.program = 'sqlplus.exe'
 order by se.LOGON_TIME desc
 ;
+
+-- wyszukanie sql po tekscie:
+select distinct(s1.sql_id)
+from v$sqltext s1, v$sqltext s2
+where s1.sql_id = s2.sql_id and s2.PIECE = s1.piece + 1
+and concat(s1.sql_text, s2.sql_text) like '%HOGA%'
+;
+
 
 -- index hint
 select /*+ index(a IDX_APP_APP_NUMBER) index(mc IDX_MOK_CALL_APPID_CT)*/ a.application_number, a.application_date, a.PRODUCT, a.APPLICATION_TYPE, api.sap, mc.*

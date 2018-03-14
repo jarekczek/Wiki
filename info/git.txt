@@ -1,6 +1,7 @@
 git rebase -i HEAD~2 : delete commits interactively
 git push origin +master : nadpisanie brancha master po usunięciu commitu lokalnie
 
+git branch -l -r --sort=committerdate - lista gałęzi chronologicznie
 git branch -u xxx  - wybranie gałęzi do śledzenia (upstream)
 
 git diff --cached
