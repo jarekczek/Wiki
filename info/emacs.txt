@@ -1,1 +1,7 @@
+===keyboard-shortcuts===
+bookmarks C-x r l
 goto-line M-g g
+
+===variables===
+user-init-file
+
