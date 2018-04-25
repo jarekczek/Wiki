@@ -6,7 +6,9 @@
       return m.group(1);
     s = s.replaceAll("(K)", "\$1")
     // non-capturing group: (?:X)
-    
+
+    new String(Base64.getDecoder().decode(jsonStr))
+		Base64.getEncoder().encodeToString(bytes)
 
       Process p = Runtime.getRuntime().exec("cmd.exe /C echo \"\"Hello\"\"");
       p.waitFor();
@@ -30,6 +32,8 @@ java.text.SimpleDateFormat todaysDate =
 String backupdirectory = "c:/mybackups/" +
     todaysDate.format((java.util.Calendar.getInstance()).getTime());
 
+java.util.UUID.randomUUID().toString() //guid
+		
 java.exe {{{
 -XX:+TraceClassLoading
 }}}
@@ -175,6 +179,9 @@ log4j {{
 	logCtx = (LoggerContext) LogManager.getContext(false);
 	logCtx.setConfigLocation(new File("C:\\log4j2.xml").toURI());
 	logCtx.reconfigure();
+	
+	log4j2: breakpoint, zeby zobaczyc, gdzie loguje: org.apache.logging.log4j.core.config.AppenderControl#callAppender0
+	  albo org.apache.logging.log4j.core.config.LoggerConfig#callAppenders
 	
 }}
 

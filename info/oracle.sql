@@ -114,3 +114,13 @@ select dict_seq.nextval from dual;
 
 -- regex
 where REGEXP_LIKE(MNG_IND_CALENDAR_ENTRY_ID, '^[0-9]+$')
+
+-- rank - get top records {{{
+select * from (
+  select a.agreement_number, crz.crz_number, crz.last_modified_time,
+  rank() over (partition by a.id order by crz.last_modified_time) rnk
+  from AGREEMENT a
+  left join tabcrz crz on crz.AGREEMENT_ID = a.id
+) where rnk = 1
+;
+}}}

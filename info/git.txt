@@ -31,6 +31,7 @@ git init --bare
 git log --author Kowalski
 git log --grep=xxxx - pokaze tylko zawierajace w opisie tekst xxxx
 git log --graph
+git log --no-walk --branches - pokaze tylko czubki galezi
 git log --stat / --summary / --name-status: pokaz liste plikow
 git log rev1..rev2 --ancestry-path
 git log -- .
@@ -66,7 +67,11 @@ git push origin --delete feature/xxxxx - delete remote branch
 How to:
 ------------
 
+delete remote branch: git push origin --delete feature/xxx
 delete untracked files : git clean -f
+config where comes from: git config --list --show-origin
+move remote branch pointer: git branch -f feature/x commit; git push
+rebase branch remotely : checkout bra; rebase master; push origin bra -f
 unstage files : git reset HEAD
 revert files : git checkout -- .
 find branch source: git merge-base master feature/ben

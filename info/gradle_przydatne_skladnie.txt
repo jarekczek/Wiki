@@ -8,6 +8,8 @@ configurations.create('bootWeb')
 
   new ProcessBuilder(sSymfExe).start()
 
+local customization: localonly.gradle
+	
 // Dump all dependencies for given configuration.
 print buildscript.configurations.classpath.each { println it }
 print configurations.runtime.each { println it }
