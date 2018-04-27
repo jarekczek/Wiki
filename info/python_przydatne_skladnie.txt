@@ -8,6 +8,15 @@ d = dict(one='1', two='2')
 dir(object) - pokazuje info o danym obiekcie
 type(object) - pokazuje typ obiektu
 
+regex regular expressions: {{{
+import re
+s = "5C JC)"
+print(s)
+s2 = re.sub("([A-Z])", "\g<1>!", s)
+print(s2)
+
+}}}
+
 random password {{{
 import random
 

@@ -1,7 +1,31 @@
 ===keyboard-shortcuts===
+string insert rectangle C->
+describe shortcut C-h c
+reverse search C-r
+search C-s
+kill buffer (close window) C-x k <enter>
+cut C-w
 bookmarks C-x r l
+yank (paste) C-y
+query-replace regex C-M-S-5 (%)
 goto-line M-g g
+copy M-w
+shell command M-S-1 (!)
+query-replace M-S-5 (%)
+async shell command M-S-7 (&)
+type command M-x
+
+====my shortcuts====
+find-tag C-.
+show file path C-c f
+show message C-c m
+duplicate line C-S-d
+tags-apropos C-M-.
 
 ===variables===
 user-init-file
 
+===help===
+M-x apropos
+C-h r
+C-h b - shows all shortcuts, searchable

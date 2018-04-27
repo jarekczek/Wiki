@@ -184,3 +184,7 @@ jar { // java plugin
     )
   }
 }
+
+// Warunkowy include:
+if (file('xx.gradle').exists())
+  apply from: 'xx.gradle' 
