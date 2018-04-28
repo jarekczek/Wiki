@@ -58,6 +58,8 @@ git stash pop
 git stash push -m...
 git stash show -p 0 : pokaż ostatni stash
 
+git update-index --again : refresh staged files
+
 git flow:
 ------------
 git checkout -b feature/x

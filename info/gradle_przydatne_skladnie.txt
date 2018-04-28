@@ -8,8 +8,6 @@ configurations.create('bootWeb')
 
   new ProcessBuilder(sSymfExe).start()
 
-local customization: localonly.gradle
-	
 // Dump all dependencies for given configuration.
 print buildscript.configurations.classpath.each { println it }
 print configurations.runtime.each { println it }
@@ -165,6 +163,7 @@ task glass (type:Exec, dependsOn: 'war') {
 task run (type:JavaExec) {
   classpath = sourceSets.main.runtimeClasspath
   main = 'JakasKlasa'
+  jvmArgs(["-Dhttp.proxyHost=localhost", "-Dhttp.proxyPort=1090"])
   jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7778"
 }
 
