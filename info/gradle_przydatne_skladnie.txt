@@ -177,8 +177,9 @@ jar { // java plugin
     attributes(
       "Manifest-Version": "1.0",
       "Main-Class": "jc.pbntools.PbnTools",
+			// classpath jar
       "Class-Path": configurations.compile.files.collect {
-        it.getName()
+        "file:///" + it.toString()
       }.join(" ")
     )
   }

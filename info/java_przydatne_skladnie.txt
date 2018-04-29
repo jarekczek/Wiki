@@ -21,7 +21,7 @@
 
 Thread.sleep(5000) //ms
 
-javax.xml.bind.parseHexBinary, printHexBinary
+javax.xml.bind.DatatypeConverter.parseHexBinary, printHexBinary
 
 // date time java8
 String path = "kopia_jpkok_derby_" + LocalDateTime.now().format(
