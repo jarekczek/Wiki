@@ -332,3 +332,16 @@ reflection {{{
   f.setAccessible(true);
   f.get(obj);
 }}}
+
+maven {{{
+maven package -DskipTests
+}}}
+
+printStackTrace {{{
+				StringBuilder sb = new StringBuilder();
+				for (StackTraceElement e: Thread.currentThread().getStackTrace()) {
+					sb.append(e);
+					sb.append(System.getProperty("line.separator"));
+				}
+				Logger.getLogger("jarek").info(sb.toString());
+}}}

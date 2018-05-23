@@ -72,6 +72,7 @@ How to:
 delete remote branch: git push origin --delete feature/xxx
 delete untracked files : git clean -f
 config where comes from: git config --list --show-origin
+get repo url: git config --get remote.origin.url
 move remote branch pointer: git branch -f feature/x commit; git push
 rebase branch remotely : checkout bra; rebase master; push origin bra -f
 unstage files : git reset HEAD
