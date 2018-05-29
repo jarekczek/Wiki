@@ -6,6 +6,7 @@
       return m.group(1);
     s = s.replaceAll("(K)", "\$1")
     // non-capturing group: (?:X)
+    // testowanie regexów online: https://regex101.com/r/5kh4D4/1
 
     new String(Base64.getDecoder().decode(jsonStr))
 		Base64.getEncoder().encodeToString(bytes)
@@ -182,7 +183,10 @@ log4j {{
 	
 	log4j2: breakpoint, zeby zobaczyc, gdzie loguje: org.apache.logging.log4j.core.config.AppenderControl#callAppender0
 	  albo org.apache.logging.log4j.core.config.LoggerConfig#callAppenders
-	
+    
+  dependencies
+  compile 'org.apache.logging.log4j:log4j-api:2.11.0'
+  compile 'org.apache.logging.log4j:log4j-core:2.11.0'	
 }}
 
 }}}
@@ -345,3 +349,7 @@ printStackTrace {{{
 				}
 				Logger.getLogger("jarek").info(sb.toString());
 }}}
+
+default url connection timeout (socket):
+  -Dsun.net.client.defaultConnectTimeout=30000
+  -Dsun.net.client.defaultReadTimeout=30000
