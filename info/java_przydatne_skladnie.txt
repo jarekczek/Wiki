@@ -20,7 +20,11 @@
     catch (IOException e) { System.err.println(e.toString()); }
     }
 
-Thread.sleep(5000) //ms
+        try {
+            Thread.sleep(delayMillis);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
 
 javax.xml.bind.DatatypeConverter.parseHexBinary, printHexBinary
 

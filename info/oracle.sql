@@ -124,3 +124,18 @@ select * from (
 ) where rnk = 1
 ;
 }}}
+
+-- disk usage {{{
+select ta.table_name, ta.blocks*8/1024, TA.* from all_tables ta
+where ta.blocks is not null
+order by ta.blocks desc, ta.table_name
+;
+
+select lobs.table_name, se.bytes / 1000000000.0, se.* from dba_segments se
+left join dba_lobs lobs on se.SEGMENT_NAME = lobs.SEGMENT_NAME
+WHERE se.OWNER='PDPDB' and lobs.owner='PDPDB'
+ORDER BY bytes desc
+
+-- dba_extents
+;
+}}}
