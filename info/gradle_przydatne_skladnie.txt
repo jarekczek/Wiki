@@ -177,7 +177,7 @@ jar { // java plugin
   manifest {
     attributes(
       "Manifest-Version": "1.0",
-      "Main-Class": "jc.pbntools.PbnTools",
+      "Main-Class": tasks.run.main,
 			// classpath jar
       "Class-Path": configurations.compile.files.collect {
         "file:///" + it.toString()
