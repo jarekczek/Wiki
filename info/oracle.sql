@@ -139,3 +139,10 @@ ORDER BY bytes desc
 -- dba_extents
 ;
 }}}
+
+-- unblock user:
+sudo su -
+su - oracle
+sqlplus / as sysdba
+alter user JACZ_MTG identified by "new password";
+alter user JACZ_MTG account unlock;

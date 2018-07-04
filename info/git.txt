@@ -77,4 +77,5 @@ move remote branch pointer: git branch -f feature/x commit; git push
 rebase branch remotely : checkout bra; rebase master; push origin bra -f
 unstage files : git reset HEAD
 revert files : git checkout -- .
+tag remotely : git tag xxx; git push origin xxx
 find branch source: git merge-base master feature/ben

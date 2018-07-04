@@ -1,3 +1,5 @@
 $TcpClient.Connect('localhost', 3389)
 $SslStream = New-Object Net.Security.SslStream $TcpClient.GetStream()
 Write-Host ($SslStream | Format-List | Out-String)
+$SslStream.AuthenticateAsClient('localhost', $null, 'ssl2', $false)
+"ssl2", "ssl3", "tls", "tls11", "tls12"

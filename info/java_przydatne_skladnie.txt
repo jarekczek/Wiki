@@ -28,6 +28,9 @@
 
 javax.xml.bind.DatatypeConverter.parseHexBinary, printHexBinary
 
+Path path = FileSystems.getDefault().getPath("logs", "access.log");
+Files.read Files.copy
+
 // date time java8
 String path = "kopia_jpkok_derby_" + LocalDateTime.now().format(
   DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
@@ -208,6 +211,9 @@ spring-boot {{{
 spring.jpa.open-in-view=false
 OpenEntityManagerInViewInterceptor
 JpaWebConfiguration
+ConfigurationProperties - fajny sposób na ładowanie properties do klasy
+  np. można zrobić property o nazwie properties (mapa) i wtedy załadują się tam
+	wszystkie property, np. JpaProperties wciąga z prefixem spring.jpa.properties
 }}}	
 	
 }}}
@@ -357,3 +363,6 @@ printStackTrace {{{
 default url connection timeout (socket):
   -Dsun.net.client.defaultConnectTimeout=30000
   -Dsun.net.client.defaultReadTimeout=30000
+
+ssl test ciphers https:
+https://github.com/ChristopherSchultz/ssltest.git
