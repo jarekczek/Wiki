@@ -1,0 +1,3 @@
+$TcpClient.Connect('localhost', 3389)
+$SslStream = New-Object Net.Security.SslStream $TcpClient.GetStream()
+Write-Host ($SslStream | Format-List | Out-String)
