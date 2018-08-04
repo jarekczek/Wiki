@@ -1,0 +1,56 @@
+<?php
+
+//error_reporting(E_STRICT | E_ALL);
+//ini_set('display_errors', 1);
+
+class eventStorage {
+  private $code;
+  private $eventsDataDir;
+  private $fileName;
+  private $f;
+
+  function __construct($codeArg) {
+    $this->eventsDataDir = '/home/bonsoft/domains/jarek.katowice.pl/data/events';
+    if ($GLOBALS['_SERVER']['COMPUTERNAME'] == 'LENOVO8G')
+      $eventsDataDir = 'weather_data/';
+    date_default_timezone_set('Europe/Warsaw');
+    $this->code = $codeArg;
+    $today = new DateTime();
+    $this->fileName = $this->eventsDataDir.'/'.$this->code.'_'.$today->format("Ymd").'.events';
+  }
+
+  function __destruct() {
+  }
+
+  function write($data) {
+    $f = fopen($this->fileName, 'a+');
+    fwrite($f, $data);
+    fwrite($f, $data);
+    fwrite($f, "\n\n");
+    fclose($f);
+  }
+}
+
+require_once('eventStorage.php');
+
+function writeEvent($eventCode, $eventData) {
+  $writer = new eventStorage($eventCode);
+  $writer->write($eventData);
+}
+
+$code = $_GET['code'];
+
+if ($code == '') {
+  http_response_code(400);
+  echo 'code required';
+  die();
+}
+
+// regular expression
+if (preg_match('/^[0-9a-z_]+$/', $code) === 0) {
+  http_response_code(400);
+  echo 'code must consist of letters, digits and underscore only.';
+  die();
+}
+
+?> 
