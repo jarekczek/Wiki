@@ -36,7 +36,7 @@ String path = "kopia_jpkok_derby_" + LocalDateTime.now().format(
   DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
 // java<8
 java.text.SimpleDateFormat todaysDate = 
-    new java.text.SimpleDateFormat("yyyy-MM-dd");
+    new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 String backupdirectory = "c:/mybackups/" +
     todaysDate.format((java.util.Calendar.getInstance()).getTime());
 
@@ -366,3 +366,8 @@ default url connection timeout (socket):
 
 ssl test ciphers https:
 https://github.com/ChristopherSchultz/ssltest.git
+
+android {{{
+  https://material.io/tools/icons/?style=baseline
+  findViewById(android.R.id.content)
+}}}

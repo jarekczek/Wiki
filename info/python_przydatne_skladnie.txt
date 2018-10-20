@@ -41,3 +41,67 @@ for i in range(nLen):
   print (chars[random.randint(0, len(chars)-1)], end='')
 print()
 }}}
+
+@staticmethod
+def tee(*args, **kwargs):
+    if 'file' in kwargs:
+        print(*args, **kwargs)
+        del(kwargs['file'])
+    print(*args, **kwargs)
+
+exit(1)
+
+try:
+  print(1/0)
+except ZeroDivisionError:
+  print("error")
+except:
+  print("other error")
+  
+file {{{
+
+# -*- coding: utf-8 -*-
+
+import io
+import sys
+
+i = 0
+fin = open("test.txt")
+fin = io.open("testutf.txt", encoding='utf8')
+fout = open("wynik.txt", "w+t")
+# fout = io.open("wynik.txt", mode="w+t", encofing='utf8')
+sLinia = "start"
+while sLinia:
+  sLinia = sys.stdin.readline()
+  i = i + 1
+  print(`i` + ": " + sLinia, end='', file=fout)
+  fout.write(u'text w unicode')
+
+import glob
+for name in glob.glob('testing*08-05.txt'):
+  print name
+fout.close()
+
+print name.encode(encoding="utf-8", errors="replace") #ignore
+
+}}}
+
+typing {{{
+from typing import Dict, List
+d: Dict[str, int] = dict()
+}}}
+
+pandas {{{
+import pandas as pd
+pd.read_csv('file.csv')
+print(df.describe().to_string()) # to show all columns, even above 80 chars per line
+df['time'] = df['time'].apply(pd.to_datetime)
+df = df[df.time.map(lambda t: t.date() == datetime.date(2016, 12, 16))]
+df['volume2'] = df['volume'] * df['open']
+
+df['bin'] = pd.cut(df['volume2'], 50).apply(lambda bin: bin.left)
+g = df[['bin', 'universe']].groupby('bin').mean()
+#plt.plot(list(g['universe']))
+plt.scatter(list(g.index), list(g['universe']))
+plt.hist(list(g.index), bins=50, weights=list(g['universe']), cumulative=True)
+}}}

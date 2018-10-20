@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 <?php
 
-//error_reporting(E_STRICT | E_ALL);
+error_reporting(E_STRICT); // E_ALL
 //ini_set('display_errors', 1);
+
+htmlspecialchars(string)
+print_r($_SERVER)
+print_r($GLOBALS)
 
 class eventStorage {
   private $code;
@@ -54,3 +59,13 @@ if (preg_match('/^[0-9a-z_]+$/', $code) === 0) {
 }
 
 ?> 
+
+// echo current time
+date_default_timezone_set('Europe/Warsaw');
+echo "hi " . date('Y-m-d H:i:s');
+
+$line = fgets($f);
+if ($line === FALSE)
+  break;
+$line = str_replace("\n", "", $line);
+$line = str_replace("\r", "", $line);
