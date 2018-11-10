@@ -1,5 +1,6 @@
 import base64
 print(base64.standard_b64decode(bytes('bXlzcWw6Ly9qNjQwODlydzpJZGt3cElzY2Z0UldhQG15c3FsLWovajY0MDg5X3BsdWdpbl9jZW50cmFs', 'ascii')));
+"{0:.6f}".format(x)
 
 dict literal:
 d = { 'one': '1', 'two': '2' }
@@ -7,6 +8,15 @@ d = dict(one='1', two='2')
 
 dir(object) - pokazuje info o danym obiekcie
 type(object) - pokazuje typ obiektu
+
+PairLR = collections.namedtuple('Pair', 'left right')
+@staticmethod
+def constructBins(limits: List[float]) -> List[PairLR]:
+    for i in range(len(limits) - 1):
+        yield PairLR(limits[i], limits[i+1])
+        
+zip(lst)
+zip(*lst)
 
 regex regular expressions: {{{
 import re
@@ -95,7 +105,21 @@ pandas {{{
 import pandas as pd
 pd.read_csv('file.csv')
 print(df.describe().to_string()) # to show all columns, even above 80 chars per line
+
+df = pd.DataFrame(columns = ['col1', 'col2'])
+df = df.append(pd.DataFrame(columns = ['col3']))
+df = df.drop('col3', axis=1)
+df = df.append({'col1': 1, 'col2': 3}, True)
+df = df.append(pd.DataFrame([[1, 2]], columns = ['col2', 'col3']))
+
+df = df.assign(confidence = float('nan'))
+df.update(df['returnsOpenPrevMktres10'].rename('confidence'))
+
 df['time'] = df['time'].apply(pd.to_datetime)
+# Apply a function to each row (as a Series):
+  df['retBinStr'] = df.apply(lambda r: str(r.retBin), axis=1)
+  g['retBinStr'] = g.apply(lambda s: s.name, axis=1)
+  
 df = df[df.time.map(lambda t: t.date() == datetime.date(2016, 12, 16))]
 df['volume2'] = df['volume'] * df['open']
 
@@ -104,4 +128,8 @@ g = df[['bin', 'universe']].groupby('bin').mean()
 #plt.plot(list(g['universe']))
 plt.scatter(list(g.index), list(g['universe']))
 plt.hist(list(g.index), bins=50, weights=list(g['universe']), cumulative=True)
+}}}
+
+keras {{{
+  K.set_value(self.kmodel.optimizer.lr, 0.1 * K.get_value(self.kmodel.optimizer.lr))
 }}}
