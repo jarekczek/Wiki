@@ -59,6 +59,7 @@ git stash push -m...
 git stash show -p 0 : pokaż ostatni stash
 
 git update-index --again : refresh staged files
+git update-index --assume-unchanged x.java : don't see changes in given file
 
 git flow:
 ------------
@@ -79,3 +80,4 @@ unstage files : git reset HEAD
 revert files : git checkout -- .
 tag remotely : git tag xxx; git push origin xxx
 find branch source: git merge-base master feature/ben
+recover from branch delete : git reflog
