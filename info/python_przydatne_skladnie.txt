@@ -61,10 +61,15 @@ def tee(*args, **kwargs):
 
 exit(1)
 
+import traceback
+
 try:
   print(1/0)
 except ZeroDivisionError:
   print("error")
+except Exception as e:
+  print(e.args)
+  traceback.print_exc()
 except:
   print("other error")
   
@@ -111,9 +116,13 @@ df = df.append(pd.DataFrame(columns = ['col3']))
 df = df.drop('col3', axis=1)
 df = df.append({'col1': 1, 'col2': 3}, True)
 df = df.append(pd.DataFrame([[1, 2]], columns = ['col2', 'col3']))
+df = df.append(b, ignore_index=True)
+df = df.reset_index()
 
 df = df.assign(confidence = float('nan'))
 df.update(df['returnsOpenPrevMktres10'].rename('confidence'))
+
+df.insert(len(df.columns), 'returnsOpenPrevPrevMktres1', float('nan'))
 
 df['time'] = df['time'].apply(pd.to_datetime)
 # Apply a function to each row (as a Series):
@@ -131,5 +140,12 @@ plt.hist(list(g.index), bins=50, weights=list(g['universe']), cumulative=True)
 }}}
 
 keras {{{
+  from tensorflow.python.ops import array_ops, math_ops
+
   K.set_value(self.kmodel.optimizer.lr, 0.1 * K.get_value(self.kmodel.optimizer.lr))
+  se = tf.Session()
+  a = tf.constant([1, 2])
+  print(se.run(a * a))
+  # safe division
+  print(se.run(array_ops.where(math_ops.equal(b, 0.0), array_ops.ones_like(a), a / b)))
 }}}
