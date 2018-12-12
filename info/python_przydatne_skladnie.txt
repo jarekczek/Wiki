@@ -18,6 +18,15 @@ def constructBins(limits: List[float]) -> List[PairLR]:
 zip(lst)
 zip(*lst)
 
+assert abs(f1 - f2) < 0.000000001, str(f1) + " != " + str(f2)
+
+from functools import reduce
+import operator
+reduce(operator.mul, [1, 2, 3])
+
+#command line:
+dirName = "testy_moje" if len(sys.argv) == 1 else sys.argv[1]
+
 regex regular expressions: {{{
 import re
 s = "5C JC)"
@@ -78,6 +87,7 @@ file {{{
 # -*- coding: utf-8 -*-
 
 import io
+import os
 import sys
 
 i = 0
@@ -99,6 +109,10 @@ fout.close()
 
 print name.encode(encoding="utf-8", errors="replace") #ignore
 
+os.listdir(os.path.curdir)
+os.path.abspath('.')
+# read whole file
+compet: str = open('compet.py', "r").read()
 }}}
 
 typing {{{
@@ -113,7 +127,7 @@ print(df.describe().to_string()) # to show all columns, even above 80 chars per 
 
 df = pd.DataFrame(columns = ['col1', 'col2'])
 df = df.append(pd.DataFrame(columns = ['col3']))
-df = df.drop('col3', axis=1)
+df = df.drop('col3', axis=1, inplace=True)
 df = df.append({'col1': 1, 'col2': 3}, True)
 df = df.append(pd.DataFrame([[1, 2]], columns = ['col2', 'col3']))
 df = df.append(b, ignore_index=True)
@@ -122,14 +136,21 @@ df = df.reset_index()
 df = df.assign(confidence = float('nan'))
 df.update(df['returnsOpenPrevMktres10'].rename('confidence'))
 
+newValues[t[0]] = y
+df.update(pd.DataFrame.from_dict(newValues, orient='index', columns=['confidence']))
+pd.DataFrame.from_dict({'a': [5, 1], 'b': [6, 34]})
+
 df.insert(len(df.columns), 'returnsOpenPrevPrevMktres1', float('nan'))
 
 df['time'] = df['time'].apply(pd.to_datetime)
 # Apply a function to each row (as a Series):
   df['retBinStr'] = df.apply(lambda r: str(r.retBin), axis=1)
   g['retBinStr'] = g.apply(lambda s: s.name, axis=1)
+df2['chosen'] = df2['assetCode'].isin(self.chosenAssets)
   
+#filtering
 df = df[df.time.map(lambda t: t.date() == datetime.date(2016, 12, 16))]
+df = df[df['volume'] > 5.0]
 df['volume2'] = df['volume'] * df['open']
 
 df['bin'] = pd.cut(df['volume2'], 50).apply(lambda bin: bin.left)
@@ -140,6 +161,7 @@ plt.hist(list(g.index), bins=50, weights=list(g['universe']), cumulative=True)
 }}}
 
 keras {{{
+  import tensorflow as tf
   from tensorflow.python.ops import array_ops, math_ops
 
   K.set_value(self.kmodel.optimizer.lr, 0.1 * K.get_value(self.kmodel.optimizer.lr))
@@ -148,4 +170,14 @@ keras {{{
   print(se.run(a * a))
   # safe division
   print(se.run(array_ops.where(math_ops.equal(b, 0.0), array_ops.ones_like(a), a / b)))
+}}}
+
+plot {{{
+import matplotlib.pyplot as plt
+plt.clf()
+#plt.hist(data)
+plt.scatter(hist[1][1:], hist[0])
+plt.legend([fullTitle])
+plt.savefig(fullTitle + ".png")
+plt.show()
 }}}
