@@ -189,3 +189,7 @@ jar { // java plugin
 // Warunkowy include:
 if (file('xx.gradle').exists())
   apply from: 'xx.gradle' 
+
+gradle command line {{{
+  gradle testBoot -PbootEmbedded=true
+}}}

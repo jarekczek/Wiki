@@ -28,6 +28,7 @@ val l = listOf(1, 2, 3)
 val a = arrayOf("aaa", "b")
 // Sort by 2 fields.
 val sortedList = list.sortedWith(compareBy({ it.age }, { it.name }))
+val t = this@MyClass
 
 java -> kotlin {{{
   Object.class -> Object::class albo Object::class.java

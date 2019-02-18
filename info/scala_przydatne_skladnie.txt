@@ -19,3 +19,10 @@ object Main /* singleton class */
 java -> scala {{{
   Object.class -> classOf[Object]
 }}}
+
+sbt {{{
+
+download javadoc:
+libraryDependencies += "com.twitter" % "finagle-http_2.12" % "17.12.0" classifier "javadoc"
+
+}}}
