@@ -407,3 +407,4 @@ public class XmlTest {
 set JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 
 java processes list: jdk\bin\jcmd -l
+java jvm args: jps -lvm
