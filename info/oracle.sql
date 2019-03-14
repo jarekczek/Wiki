@@ -146,3 +146,7 @@ su - oracle
 sqlplus / as sysdba
 alter user JACZ_MTG identified by "new password";
 alter user JACZ_MTG account unlock;
+
+-- convert interval to int
+-- move seconds to days, then extract them as days
+extract(day from (endtime - starttime)*60*60*24)
