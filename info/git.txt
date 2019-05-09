@@ -25,6 +25,7 @@ git config --global -e
 	email = jarekczek@poczta.onet.pl
 
 git fsck --unreachable 
+git reflog
 
 git init --bare
 

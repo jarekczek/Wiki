@@ -44,6 +44,7 @@ java.util.UUID.randomUUID().toString() //guid
 		
 java.exe {{{
 -XX:+TraceClassLoading
+-XX:-OmitStackTraceInFastThrow - always show full stack trace
 }}}
 
 *************** JACOB ****************
@@ -406,5 +407,6 @@ public class XmlTest {
 
 set JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 
-java processes list: jdk\bin\jcmd -l
+java processes list: jdk\bin\jcmd -l OR jps
 java jvm args: jps -lvm
+taskkill /pid xxx /f

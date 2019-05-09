@@ -12,6 +12,8 @@ configurations.create('bootWeb')
 // Dump all dependencies for given configuration.
 print buildscript.configurations.classpath.each { println it }
 print configurations.runtime.each { println it }
+gradle dependencies
+gradle :proj:dependencies
 
 buildscript {
   repositories {
