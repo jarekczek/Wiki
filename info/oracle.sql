@@ -150,3 +150,11 @@ alter user JACZ_MTG account unlock;
 -- convert interval to int
 -- move seconds to days, then extract them as days
 extract(day from (endtime - starttime)*60*60*24)
+
+-- partitions
+select * from all_tab_partitions
+where table_name = 'MYTABLE'
+order by partition_name desc
+;
+select * from mytable partition(ILOG_PD20191104)
+;

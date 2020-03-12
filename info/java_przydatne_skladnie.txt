@@ -410,3 +410,16 @@ set JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 java processes list: jdk\bin\jcmd -l OR jps
 java jvm args: jps -lvm
 taskkill /pid xxx /f
+
+soapui {{{
+  def refId = testRunner.testCase.testStepList[0].testRequest.response.responseHeaders['reference-id']
+  testRunner.testCase.setPropertyValue("refId", refId[0])
+  log.info("refId:" + testRunner.testCase.getPropertyValue("refId"))
+  
+  ${#TestCase#refId}
+}}}
+
+intellij {{{
+Shift-F1 External Documentation
+Alt-Home Navigation Bar
+}}}

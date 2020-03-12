@@ -27,6 +27,8 @@ git config --global -e
 git fsck --unreachable 
 git reflog
 
+git gc - czyszczenie jakichś śmieci wewnętrznych dla gita
+
 git init --bare
 
 git log --author Kowalski
