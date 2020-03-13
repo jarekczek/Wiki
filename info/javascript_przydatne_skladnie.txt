@@ -86,3 +86,8 @@ xhr.onreadystatechange = function () {
 };
 xhr.send();
 }}}
+
+regex {{{
+/\(.*/.exec("sd(f)")[0] - return match for (.*
+"input".match(/p(.)/)[1] - return first found group
+}}}
