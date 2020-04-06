@@ -87,8 +87,9 @@ file {{{
 # -*- coding: utf-8 -*-
 
 import io
-import os
 import sys
+
+print sys.version
 
 i = 0
 fin = open("test.txt")
@@ -109,6 +110,7 @@ fout.close()
 
 print name.encode(encoding="utf-8", errors="replace") #ignore
 
+import os
 os.listdir(os.path.curdir)
 os.path.abspath('.')
 # read whole file
