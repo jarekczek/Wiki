@@ -44,7 +44,6 @@ java.util.UUID.randomUUID().toString() //guid
 		
 java.exe {{{
 -XX:+TraceClassLoading
--XX:-OmitStackTraceInFastThrow - always show full stack trace
 }}}
 
 *************** JACOB ****************
@@ -197,6 +196,12 @@ log4j {{
   compile 'org.apache.logging.log4j:log4j-core:2.11.0'	
 }}
 
+}}}
+
+logback {{{
+    StatusPrinter.print((LoggerContext)LoggerFactory.getILoggerFactory());
+    -Dlogback.configurationFile
+    example: https://github.com/jarekczek/pbntools/blob/master/config/logback.xml
 }}}
 
 spring {{{
@@ -407,19 +412,4 @@ public class XmlTest {
 
 set JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 
-java processes list: jdk\bin\jcmd -l OR jps
-java jvm args: jps -lvm
-taskkill /pid xxx /f
-
-soapui {{{
-  def refId = testRunner.testCase.testStepList[0].testRequest.response.responseHeaders['reference-id']
-  testRunner.testCase.setPropertyValue("refId", refId[0])
-  log.info("refId:" + testRunner.testCase.getPropertyValue("refId"))
-  
-  ${#TestCase#refId}
-}}}
-
-intellij {{{
-Shift-F1 External Documentation
-Alt-Home Navigation Bar
-}}}
+java processes list: jdk\bin\jcmd -l
