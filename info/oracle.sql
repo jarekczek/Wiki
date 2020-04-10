@@ -158,3 +158,13 @@ order by partition_name desc
 ;
 select * from mytable partition(ILOG_PD20191104)
 ;
+
+-- change sequence value
+
+revoke select on mok.APPLICATION_NUMBER_SEQ from mokuser;
+select mok.APPLICATION_NUMBER_SEQ.nextval from dual;
+select mok.APPLICATION_NUMBER_SEQ.currval from dual;
+alter sequence mok.APPLICATION_NUMBER_SEQ increment by -(value returned - 1) nocache;
+select mok.APPLICATION_NUMBER_SEQ.nextval from dual;
+alter sequence mok.APPLICATION_NUMBER_SEQ increment by 1 ???nocache???;
+grant select on mok.APPLICATION_NUMBER_SEQ to mokuser;
