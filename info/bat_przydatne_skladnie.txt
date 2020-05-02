@@ -1,0 +1,2 @@
+rem parameter without an extension ~n
+for %%p in (*.bmp) do C:\Program_Files\ImageMagick-7.0.8-Q16\magick.exe %%p -auto-level out\%%~np
