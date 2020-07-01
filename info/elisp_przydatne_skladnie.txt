@@ -20,3 +20,5 @@ debugging {{{
   (defun listadv (function-name props) (print "function-name"))
   (advice-function-mapc 'listadv 'rmail)
 }}}
+
+(load-file (expand-file-name "emacs_common.el" (file-name-directory load-file-name)))

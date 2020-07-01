@@ -168,3 +168,23 @@ alter sequence mok.APPLICATION_NUMBER_SEQ increment by -(value returned - 1) noc
 select mok.APPLICATION_NUMBER_SEQ.nextval from dual;
 alter sequence mok.APPLICATION_NUMBER_SEQ increment by 1 ???nocache???;
 grant select on mok.APPLICATION_NUMBER_SEQ to mokuser;
+
+--table record
+
+declare
+TYPE tabRecType is record
+ (
+    covId number
+ );
+type tabType is table of tabRecType;
+tab tabType;
+begin
+	tab := tabType();
+  tab.extend; tab(tab.count).covId := 137669787688273428697127409643349389337;
+	FOR i IN 1..tab.count loop
+    dbms_output.put_line('processing: ' || tab(i));
+  END LOOP;
+  commit;
+end;
+/
+EXIT 0; 
