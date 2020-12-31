@@ -34,9 +34,12 @@ Files.read Files.copy
 // date time java8
 String path = "kopia_jpkok_derby_" + LocalDateTime.now().format(
   DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+    val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+    val givenTime = LocalDateTime.parse(args[2], dateFormatter)
 // java<8
 java.text.SimpleDateFormat todaysDate = 
     new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 String backupdirectory = "c:/mybackups/" +
     todaysDate.format((java.util.Calendar.getInstance()).getTime());
 
@@ -201,6 +204,7 @@ log4j {{
 logback {{{
     StatusPrinter.print((LoggerContext)LoggerFactory.getILoggerFactory());
     -Dlogback.configurationFile
+	-Dlogback.statusListenerClass=ch.qos.logback.core.status.OnConsoleStatusListener
     example: https://github.com/jarekczek/pbntools/blob/master/config/logback.xml
 }}}
 

@@ -1,5 +1,6 @@
 - [[elisp:(start-process "przelewy.groovy" "temp" "groovy" "C:\\bonanza\\korespondencja\\przych\\faktury\\2017-03\\przelewy.groovy")]]
 
+; this is a comment
 (get-buffer-create "buf1")
 (set-buffer "buf1")(insert "text\n")
 (with-current-buffer "buf1"
