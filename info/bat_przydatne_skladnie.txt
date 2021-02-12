@@ -1,7 +1,10 @@
 <<<<<<< HEAD
 rem parameter without an extension ~n
 for %%p in (*.bmp) do C:\Program_Files\ImageMagick-7.0.8-Q16\magick.exe %%p -auto-level out\%%~np.jpg
+-- output from command
 FOR /F "tokens=* USEBACKQ" %%F IN (`java -cp . ComputeHash %originalFile%`) DO (SET hash=%%F)
+-- file contents processing
+FOR /F "tokens=* USEBACKQ" %%F IN (%~dp0\gradle.properties) DO (SET versionLine=%%F)
 
 set time=%~t1
 set date=%time:~0,4%%time:~5,2%%time:~8,2%
