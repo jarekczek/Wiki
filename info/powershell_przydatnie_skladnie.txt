@@ -3,3 +3,17 @@ $SslStream = New-Object Net.Security.SslStream $TcpClient.GetStream()
 Write-Host ($SslStream | Format-List | Out-String)
 $SslStream.AuthenticateAsClient('localhost', $null, 'ssl2', $false)
 "ssl2", "ssl3", "tls", "tls11", "tls12"
+
+[Convert]::ToBase64String([IO.File]::ReadAllBytes($Filename)) | Out-File certbase64.txt
+
+powershell.exe -NonInteractive -File xxxx.ps1
+
+szkolenie powershell 2021-03-05
+           | gm Get-Member
+		   | Select-Object -Property *
+		   $o = "" | Select-Object -Property p1
+           @{ p1 = "asdfa"; p2 = 5 } - hashtable
+		   New-Object -TypeName mojaNazwaTypu -Property $property
+           (New-TimeSpan -Start ... -End ...).Days
+		   Write-Host "Zmienna `$z = $z" - escapuje dolara
+		   $a=[uint64]5
