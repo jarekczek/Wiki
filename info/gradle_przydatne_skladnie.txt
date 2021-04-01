@@ -14,6 +14,7 @@ print buildscript.configurations.classpath.each { println it }
 print configurations.runtime.each { println it }
 gradle dependencies
 gradle :proj:dependencies
+gradlew buildEnvironment - dependencies for buildscript
 
 buildscript {
   repositories {

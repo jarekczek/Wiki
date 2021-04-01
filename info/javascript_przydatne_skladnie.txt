@@ -10,6 +10,7 @@ console.log(typeof o);
 var http = require('http');
 
 document.querySelector('#pdflink').href = 'http://bonsoft.pl';
+document.querySelectorAll(".btn").forEach(b => buttons += b.textContent)
 
   var linkElems = document.querySelectorAll('a');
   for(var i = 0; i < linkElems.length; i++) {
@@ -91,3 +92,5 @@ regex {{{
 /\(.*/.exec("sd(f)")[0] - return match for (.*
 "input".match(/p(.)/)[1] - return first found group
 }}}
+
+simulate onclick: button.dispatchEvent(new Event('click'))

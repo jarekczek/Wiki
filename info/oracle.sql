@@ -7,6 +7,7 @@ set serveroutput on;
 
 declare x varchar2(20000);
   sqlId varchar(2000);
+  id application.id%type; -- typ pobierany z tabeli
 begin
   for i in 1..3 loop
     x := concat(x, '1234567890');

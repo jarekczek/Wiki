@@ -38,7 +38,7 @@ git log --no-walk --branches - pokaze tylko czubki galezi
 git log --stat / --summary / --name-status: pokaz liste plikow
 git log rev1..rev2 --ancestry-path
 git log -- .
-git log --until="1/1/2016"
+git log --after="2021-03-05" --before="2022-01-01"
 git log --name-status - lista plikow
 git log 4e96edf64ed7e06902be81..origin/feature/MOK_SpringBoot --ancestry-path --reverse - od danego commit do przodu
 git log --first-parent : tylko bieżący branch
