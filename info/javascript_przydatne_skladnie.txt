@@ -7,6 +7,9 @@
 
 console.log(typeof o);
 
+var mapObject = { 'aaa': 5, 'bbb': 6 }
+for (key in mapObject) console.log(mapObject[key])
+
 var http = require('http');
 
 document.querySelector('#pdflink').href = 'http://bonsoft.pl';
