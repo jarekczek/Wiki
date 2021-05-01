@@ -8,7 +8,7 @@
 console.log(typeof o);
 
 var mapObject = { 'aaa': 5, 'bbb': 6 }
-for (key in mapObject) console.log(mapObject[key])
+for (const key in mapObject) console.log(mapObject[key])
 
 var http = require('http');
 
@@ -97,3 +97,17 @@ regex {{{
 }}}
 
 simulate onclick: button.dispatchEvent(new Event('click'))
+
+function directTextUnder(elem) {
+  var text = ""
+  Array.from(elem.childNodes).filter(e => e.nodeType == 3).forEach(e => text += e.nodeValue)
+  return text
+}
+
+function visitAllLeafs(parent, visitFn) {
+  if (!parent.hasChildNodes()) {
+    visitFn(parent)
+  } else {
+    Array.from(parent.childNodes).forEach(child => visitAllLeafs(child, visitFn))
+  }
+}
