@@ -5,6 +5,9 @@ $SslStream.AuthenticateAsClient('localhost', $null, 'ssl2', $false)
 "ssl2", "ssl3", "tls", "tls11", "tls12"
 
 [Convert]::ToBase64String([IO.File]::ReadAllBytes($Filename)) | Out-File certbase64.txt
+[Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes("abc"))
+[Convert]::FromBase64String([IO.File]::ReadAllBytes(plik.txt)) | Out-File plik.bin
+[System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String("YQBiAGMA"))
 
 powershell.exe -NonInteractive -File xxxx.ps1
 
