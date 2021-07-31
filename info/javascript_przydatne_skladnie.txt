@@ -108,6 +108,45 @@ function visitAllLeafs(parent, visitFn) {
   if (!parent.hasChildNodes()) {
     visitFn(parent)
   } else {
-    Array.from(parent.childNodes).forEach(child => visitAllLeafs(child, visitFn))
+    //console.log(parent + "has children: " + parent.hasChildNodes() + ", first: " + parent.firstChild)
+    for (var child = parent.firstChild; child; child = child.nextSibling) {
+      //console.log("before child is " + nodeDescription(child))
+      visitAllLeafs(child, visitFn)
+      if (child == null) {
+        console.log("strange, child is null")
+      }
+      //console.log("now child is...")
+      //console.log("now child is " + nodeDescription(child))
+      //console.log("for loop ends")
+    }
   }
+}
+
+function nodeDescription(node) {
+  var s = ""
+  while (node) {
+    s += node.nodeName + " "
+    node = node.parentElement
+  }
+  return s
+}
+
+function replaceTextWithRed(elem) {
+  var span = document.createElement("SPAN")
+  span.style.color = 'red'
+  span.appendChild(document.createTextNode(elem.textContent))
+  elem.parentNode.insertBefore(span, elem)
+  elem.parentNode.removeChild(elem)
+}
+
+function addTooltip(elem) {
+  var toolTip = document.createElement("span")
+  toolTip.appendChild(document.createTextNode("tool"))
+  toolTip.classList.add("hover")
+  
+  elem.appendChild(toolTip)
+}
+
+function modifyStylesheet() {
+    document.styleSheets[0].insertRule('.tooltip { background-color: yellow; }')
 }
