@@ -203,7 +203,7 @@ log4j {{
 
 logback {{{
     StatusPrinter.print((LoggerContext)LoggerFactory.getILoggerFactory());
-    -Dlogback.configurationFile
+    -Dlogback.configurationFile=file:....
 	-Dlogback.statusListenerClass=ch.qos.logback.core.status.OnConsoleStatusListener
     example: https://github.com/jarekczek/pbntools/blob/master/config/logback.xml
 }}}
