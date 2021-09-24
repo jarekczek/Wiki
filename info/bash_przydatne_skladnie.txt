@@ -1,0 +1,3 @@
+replace string: ${p2/_Umowa_o_cos_tam_/_Umowa_}
+// to replace all
+
