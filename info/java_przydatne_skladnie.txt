@@ -132,6 +132,7 @@ entityManager.unwrap(SessionImplementor.class).getPersistenceContext().getEntiti
 }}}
 
 java logging {{{
+-Djava.util.logging.config.file=/absolute/path/to/logging.properties
 C:\Program Files\Java\jdk1.8.0_112\jre\lib\logging.properties
 java.util.logging.FileHandler.pattern = %h/java%u.log
 handlers= java.util.logging.FileHandler, java.util.logging.ConsoleHandler
