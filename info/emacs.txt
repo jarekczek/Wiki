@@ -20,6 +20,7 @@ find-tag C-.
 show file path C-c f
 show message C-c m
 duplicate line C-S-d
+switch buffer: C-F6, C-S-F6
 tags-apropos C-M-.
 
 ===variables===
@@ -29,3 +30,4 @@ user-init-file
 M-x apropos
 C-h r
 C-h b - shows all shortcuts, searchable
+
