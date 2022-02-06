@@ -1,0 +1,217 @@
+alien	konwertuje pakiety instalacyjne rpm (i inne) na deb
+aplaymidi/arecordmidi -l - listuje porty midi
+apt-cache -n search ntfs - wyszukuje w pakietach ale tylko w ich nazwach
+apt-cache showpkg <pakiet>
+apt-file search -x "/filename$" (apt-file update)
+apt-mark markauto <pakiety...>
+asfxload plik.sf2 - ładuje wavetable midi emu10k1
+  np. /usr/share/sounds/sf2/TimGM6mb.sf2 (z musescore-soundfont-gm
+baobab - narzędzie do porządkowania dysku
+cat /proc/asound/card0/wavetableD1 - midi wavetable
+chkconfig disable/enable systemd service (zamiast sysv-rc-conf)
+date +%Y%m%d
+dmesg	pokazuje komunikaty bootowania
+dpkg --get-selections "*" - lista wszystkich pakietów
+dpkg-buildpackage -rfakeroot
+dpkg-query -L <pakiet> - lista plików pakietu
+dpkg-query -S <maska> - wyszukuje plik wśród w zainstalowanych pakietach
+dpkg-reconfigure locales - pozwala dodać locale
+ethtool - konfiguracja karty sieciowej
+file -i - check mime type - sprawdzenie typu pliku
+find -printf "%Ty%Tm%Td.%TH%TM %p\n" - wyszukuje z data na poczatku
+fsck - touch /forcefsck
+gcc -g -Og - kompilowanie pod debugowanie
+gconf-editor /desktop/gnome/interface/accessibility
+gdb - gdb --args python3 /usr/local/bin/orca
+  bt full
+git reset --hard, git pull
+gnome-control-center
+gnome-terminal -x polecenia
+gtf - calculate X11 modeline parameters
+HandBrakeCLI --scan -i /dev/cdrom - dvd ripping
+HandBrakeCLI --title 0 -i /dev/cdrom - dvd ripping
+HandBrakeCLI --main-feature -a ? -i /dev/cdrom /m/tytul.mp4
+hcitool inq; hcitool cc C8:97:9F:1D:27:DB; obexpushd -d - bluetooth 
+jmtpfs -d /mnt/tmp - podlacz mp3 samsung
+logger zapisuje cos do logu
+lsmod	listuje moduly
+lsof    listuje otwarte pliki
+lsusb
+mimetype - sprawdzenie typu pliku, lepsze od file -i	
+mke2fs -m 0 -I 128   inode-size 128 potrzebny dla windowsa ifsext2
+mount -t iso9660 -o loop jack.iso /mnt/cd
+nmap skanowanie portow
+pidof	daje pid czyli umozliwia kill
+rsync -a --delete-after -vv -u sync_src/* sync_dst : dobre
+  do archiwizacji; -R czasem lepiej tworzy sciezki
+rsync -ac -vv : do testowania identycznosci katalogow
+udevinfo --query=all --name=hdd	informacje o urzadzeniu
+update-alternatives --config java - pozwala wybrac wersje javy
+update-rc.d jarek start 99 2 3 . stop 99 2 3	zmienia moduly startowe
+chkconfig -l jarek -- wyswietla runlevele dla tego serwisu
+insserv jarek -- instaluje serwis
+service jarek start -- uruchamia serwis
+setxkbmap ru, ru phonetic_winkeys, pl, us
+  analyze keyboard layouts: vi /usr/share/X11/xkb/symbols/ru, /usr/share/X11/xkb/rules/xorg.lst
+setsid - uruchamia komende bez wlasciciela (ppid = 1)
+sh -c polecenia
+smartctl - dane dysku twardego
+systemctl stop samba - zatrzymuje service usluge samba
+sysv-rc-conf - ustawienia uslug
+tar -zcvf plik.tgz pliki_do_zarchiwizowania
+tar -zxvf - rozpakowuje
+tr [a-z] [A-Z] - konwertuje do duzych liter (uppercase)
+vlc - cvlc v4l2:///dev/video1 :sout=#file{dst=/m/vlc.avi} :no-sout-rtp-sap :no-sout-standard-sap :sout-keep
+wget -w 2 --random-wait --no-host-directories -r -l 1 --convert-links
+  --span-hosts --no-directories -i plik.txt --force-html -e robots=off --html-extension
+  --domains= --page-requisites --no-clobber (bez nadpisywania, )
+WINEDEBUG=+all wine ... >/tmp/relay.txt 2>&1 
+xdpyinfo - info na temat ekranu (screen) w X
+xmessage - messagebox msgbox na x-ach
+xterm -e polecenia
+xtruss - strace for x
+zenity - okienka dialogowe wywolywane z linii polecen
+
+listuje procesy wedlug zajetosci procesora
+ps -eo fname,pid,cp --sort cp
+
+przy mouncie fata robic opcje umask=000, co daje uprawnienia zapisu dla non-root users
+timidity -Ow plik.mid
+
+kopia systemu: cp --preserve=all    zeby zachowal np. flage s potrzebna dla np. su
+
+************************ PLIKI KONFIGURACYJNE *************************
+~/.local/usr/share/applications/defaults.list - domyslne aplikacje dla typów plików (mime)
+
+************************ KATALOGI *************************
+/lib/modules	stery
+/boot	kernele
+/boot/grub	konfiguracja gruba
+/usr/share/doc
+/usr/src	zrodla
+
+BASH
+C-a/e	idz do poczatku/konca linii
+C-r/s	szuka komendy po poczatku - do tylu / do przodu (C-g abort)
+C-k	usuwa do konca linii
+
+VI
+//?	szuka do przodu/do tylu
+J	laczy linie z nastepna
+n/N	powtarza szukanie do przodu/do tylu
+w/b/e	slowo do przodu/tylu / do konca slowa
+3yy	wklada do schowka 3 linie
+v...y	wklada do schowka tekst, pomiedzy v a y (tam sa komendy ruchu)
+p/P	paste after/before
+gg/G	idz do pocz/konca pliku
+C-g	pokaz biezaca pozycje (numer linii)
+C-w up/down	przejscie do okna w gore/w dol
+u/g+	undo/redo
+:*""	uruchamia komende z rejestru, np. !links http://...
+:reg	wyswietl rejestr (clipboard)
+:set ignorecase
+:w	zapisz plik
+:e plik	edytuj (jezeli bez podania pliku, to otwiera ponownie biezacy
+:saveas plik
+:new	nowe okno
+
+VIHELP
+Ctrl-]	wchodzi do linka
+Ctrl-O	wychodzi do poprz. ekranu
+
+MC
+C-s/M-s	szuka wg pocz. liter
+C-\	hotlista katalogow
+M-enter	przenosi akt. plik do linii polecen
+M-H	historia katalogow
+
+GNOME-COMMANDER
+A-F8  historia poleceń
+
+find . -exec echo '*********PLIK {}' >>/home/asound.txt \; -exec cat '{}' >>/home/asound.txt \;
+
+potrzebne pakiety:
+  xclip curl wmctrl ntfsprogs ntfs-3g openoffice.org \
+  audacity aumix bplay usbmount xscreensaver feh netpbm zenity \
+  alien lm-sensors tofrodos gawk ant sane kcalc dosfstools screen mc xinit \
+  xserver-xorg links gimp mencoder mplayer alsamixergui alsa-utils \
+  xterm chkconfig mldonkey-server smartmontools sysv-rc-conf cups \
+  audacious shared-mime-info python-apt python-imaging openbox obconf fbpanel idesktop \
+  less libstdc++5 cabextract sun-java6-jdk sun-java6-plugin numlockx telnetd smbfs telnet samba swat \
+  filezilla gcal avidemux k3b subversion esvn yasm nasm easytag wcalc cdparanoia id3tool p7zip p7zip-rar
+  sox intltool mdf2iso timidity rosegarden pmidi awesfx dnsutils mp3splt-gtk mp3wrap inkscape
+  apt-file libfile-mimeinfo-perl normalize-audio qpdf sshpass gnuplot exiv2
+  xmltex texlive-lang-polish texlive-lang-cyrillic
+  fop ntp strace appdata-tools python-pip
+  easy-rsa
+do ściągnięcia w postaci deb: live-usb-install
+składniki gnome'a:
+  gnome-terminal gnome-commander brasero gstreamer0.10-plugins-ugly file-roller eog
+  gnomebaker evince gnome-utils
+do ściągnięcia i przez dpkg:
+  handbrake http://handbrake.fr/downloads.php
+  libdvdcss http://download.videolan.org/pub/libdvdcss/1.2.9/deb/libdvdcss2_1.2.9-1_i386.deb
+już niepotrzebne pakiety:
+  xawtv streamer
+czy potrzebne?
+  gnome-control-center rox-filer xdg-utils kchmviewer
+po zainstalowaniu wykonać:
+  sensors-detect (musi załadować moduł it87)
+po co? {{{
+libstdc++5 - do lexmarka
+cabextract - dla wine-gecko
+fop - apache xml to pdf converter
+strace -fe trace=open - do uruchamiania programu z logowaniem wywolan
+  systemowych
+
+*************************** WINE ************************
+http://www.kegel.com/wine/winetricks
+winetricks gecko
+winetricks corefonts - żeby mieć normalnego couriera
+
+*************************** BACKUP ***************************
+/etc/init.d/jarek
+/etc/fstab
+/etc/grub/menu.lst
+/home/wazne
+
+SANE: ScanJet HP3670 chodzi dopiero od libsane-1.0.21
+  zainstalować xsane z normalnym libsane, po czym zrobić:
+  rm -rf /etc/sane /usr/lib/sane /usr/lib/libsane.*
+  skompilować libsane-1.0.21 i zainstalować
+  sprawdzić przez ldd `which scanimage` czy dobrze ładuje biblioteki z usr/local/lib
+  sprawdzić czy dobry `which scanimage`
+
+************************* KOMPILOWANIE ***************************
+ant: do lib/optional wrzucić jedit.jar
+ffmpeg: ./configure --enable-gpl --enable-libxvid --enable-pthreads --enable-libmp3lame --enable-version3 --enable-libfaac --enable-nonfree --enable-shared --enable-libx264 --enable-libopencore-amrnb
+mplayer: ./configure (nie wolno dawać żadnych opcji, sam wykrywa, jedynie --enable-debug)
+transcode: ./configure --enable-xvid --enable-mjpegtools
+avidemux: normalnie, a pluginy: cmake -DAVIDEMUX_SOURCE_DIR=/usr/src/avidemux_2.5.3 -DAVIDEMUX_INSTALL_PREFIX=/usr/local -DAVIDEMUX_CORECONFIG_DIR=/usr/src/avidemux_2.5.3/build/config ..
+gtkguitune: potrzebne pakiet libgtkmm-dev
+alsa modular synth (ams): libqt4-dev ladspa-sdk libjack-dev libclalsadrv-dev
+vlc: apt-get install libxcb-shm0-dev libxcb-xv0-dev libx11-xcb-dev libfribidi-dev libdirectfb-dev
+     ./configure --disable-nls --disable-mozilla --disable-lua --disable-mad --disable-postproc --disable-a52 --enable-run-as-root
+     git clone git://git.videolan.org/vlc.git
+x264: ./configure --enable-shared
+zbar: ./configure --without-gtk --without-qt --without-python
+gnome-commander: ACLOCAL_FLAGS="-I /usr/share/aclocal" ./autogen.sh; apt-get install libunique-dev
+stardict: apt-get install libmysqlclient-dev libpcre3-dev libgconf2-dev
+     ./configure --disable-spell --disable-gucharmap --disable-festival --disable-espeak
+orca: checkout gnome-3-4 yelp-tools libgtk-3-dev python-gi-dev libatspi2.0-dev python-pyatspi libwnck-3-0 python-speechd python3-cairo
+  PYTHONPATH=/usr/local/lib/python3/dist-packages:/usr/local/lib/python3.3/site-packages ./configure
+epiphany: checkout gnome-3-4 gtk-doc-tools libwebkitgtk-3.0-dev libsoup-gnome2.4-dev gsettings-desktop-schemas-dev libnotify-dev libnss3-dev
+webkitgtk: apt-get install libwebp-dev libicu-dev gperf libsecret-1-dev
+  libgeoclue-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+  cmake-data gir1.2-gudev-1.0 libogg-dev libapache2-mod-bw icon-naming-utils
+  libcroco3-dev libfontenc-dev libpciaccess-dev libxfont-dev
+  libxkbfile-dev ragel x11proto-bigreqs-dev x11proto-fonts-dev
+  x11proto-scrnsaver-dev x11proto-video-dev x11proto-xcmisc-dev
+  x11proto-xf86dri-dev libsvn-perl libyaml-libyaml-perl libyaml-perl
+
+Debian {{{
+apt-get source pkgname
+apt-get --build source pkgname
+cd ...; dpkg-buildpackage -b -uc
+fakeroot debian/rules binary - incremental
+}}}
