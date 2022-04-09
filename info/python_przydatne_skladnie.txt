@@ -44,7 +44,7 @@ nLen = 10
 
 chars = []
 for i in range(ord('A'), ord('Z')):
-  chars.append(chr(i))
+  chars.append(chr(i)) # servers as push add
 for i in range(ord('a'), ord('z')):
   chars.append(chr(i))
 chars.remove('l') # small L is stupid
@@ -182,4 +182,15 @@ plt.scatter(hist[1][1:], hist[0])
 plt.legend([fullTitle])
 plt.savefig(fullTitle + ".png")
 plt.show()
+}}}
+
+string {{{
+  contains: "adsfasdf" in s
+}}}
+
+conversions {{{
+  b = bytes(s, 'iso-8859-1')
+  int(s)
+  str(12)
+  b.decode('iso-8859-1')
 }}}

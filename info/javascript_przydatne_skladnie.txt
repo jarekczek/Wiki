@@ -150,3 +150,13 @@ function addTooltip(elem) {
 function modifyStylesheet() {
     document.styleSheets[0].insertRule('.tooltip { background-color: yellow; }')
 }
+
+async function fetchApiAsync(apiName) {
+    return new Promise(resolve => {
+        fetchApi(apiName, rsp => {
+            window.setTimeout(() => resolve(rsp), 3000);
+        });
+    });
+}
+await fetchApiAsync('sadfasd');
+
