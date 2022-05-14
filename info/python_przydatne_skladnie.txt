@@ -1,5 +1,7 @@
 import base64
 print(base64.standard_b64decode(bytes('bXlzcWw6Ly9qNjQwODlydzpJZGt3cElzY2Z0UldhQG15c3FsLWovajY0MDg5X3BsdWdpbl9jZW50cmFs', 'ascii')));
+bytes('xyz', encoding = 'ascii').hex()
+bytez = bytes.fromhex('ff')
 "{0:.6f}".format(x)
 
 dict literal:
@@ -7,7 +9,7 @@ d = { 'one': '1', 'two': '2' }
 d = dict(one='1', two='2')
 
 dir(object) - pokazuje info o danym obiekcie
-type(object) - pokazuje typ obiektu
+type(object) - pokazuje typ obiektu, na przyklad if type(o) is str:
 
 PairLR = collections.namedtuple('Pair', 'left right')
 @staticmethod
@@ -194,3 +196,12 @@ conversions {{{
   str(12)
   b.decode('iso-8859-1')
 }}}
+
+get environment variable: os.environ['varname']
+
+sudo apt-get install python3-pip
+python -m pip install <package-name>
+
+clone: copy.copy(x)
+
+python -m http.server --bind 192.168.1.333 8888

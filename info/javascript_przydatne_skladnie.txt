@@ -94,6 +94,7 @@ xhr.send();
 regex {{{
 /\(.*/.exec("sd(f)")[0] - return match for (.*
 "input".match(/p(.)/)[1] - return first found group
+'a13b'.replace(/[0-9]([0-9])/, "$&_$1") //'a13_3b'
 }}}
 
 simulate onclick: button.dispatchEvent(new Event('click'))
@@ -160,3 +161,7 @@ async function fetchApiAsync(apiName) {
 }
 await fetchApiAsync('sadfasd');
 
+json {{{
+  JSON.parse()
+  JSON.stringify()
+}}}
