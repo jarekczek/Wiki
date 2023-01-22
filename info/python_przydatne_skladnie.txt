@@ -8,6 +8,10 @@ dict literal:
 d = { 'one': '1', 'two': '2' }
 d = dict(one='1', two='2')
 
+string literal:
+r'C:\directory'
+f"this is {any(expression)}"
+
 dir(object) - pokazuje info o danym obiekcie
 type(object) - pokazuje typ obiektu, na przyklad if type(o) is str:
 
@@ -115,6 +119,7 @@ print name.encode(encoding="utf-8", errors="replace") #ignore
 import os
 os.listdir(os.path.curdir)
 os.path.abspath('.')
+os.linesep
 # read whole file
 compet: str = open('compet.py', "r").read()
 }}}
@@ -122,6 +127,7 @@ compet: str = open('compet.py', "r").read()
 typing {{{
 from typing import Dict, List
 d: Dict[str, int] = dict()
+def greeting(name: str) -> str:
 }}}
 
 pandas {{{
@@ -205,3 +211,18 @@ python -m pip install <package-name>
 clone: copy.copy(x)
 
 python -m http.server --bind 192.168.1.333 8888
+
+import json
+json.dump(results, f, default=vars) # default=vars for simple classes
+
+import unittest
+from unittest import TestCase
+class Tests(TestCase):
+  def __init__(self, tests):
+    super().__init__(tests)
+    self._dataDir = '../test/data/'
+
+objgraph {{{
+objgraph.find_backref_chain(objgraph.by_type('_asyncio.Future')[8], 
+                            lambda r: str(type(r)) == "<class 'frame'>")[0]
+}}}
