@@ -20,3 +20,5 @@ szkolenie powershell 2021-03-05
            (New-TimeSpan -Start ... -End ...).Days
 		   Write-Host "Zmienna `$z = $z" - escapuje dolara
 		   $a=[uint64]5
+
+Invoke-WebRequest -Uri $URI -UseBasicParsing
