@@ -147,6 +147,7 @@ su - oracle
 sqlplus / as sysdba
 alter user JACZ_MTG identified by "new password";
 alter user JACZ_MTG account unlock;
+SELECT username, account_status, created, lock_date, expiry_date FROM dba_users WHERE account_status != 'OPEN' AND lock_date > sysdate - 1;
 
 -- convert interval to int
 -- move seconds to days, then extract them as days
@@ -195,3 +196,6 @@ select SE.WAIT_CLASS, se.status, se.event, 'alter system kill session ''' || se.
 where se.osuser = 'UY63FU'
 AND se.state = 'WAITING'
 ;
+
+-- remove user schema completely
+drop user user_name cascade;
