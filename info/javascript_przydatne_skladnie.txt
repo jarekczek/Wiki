@@ -165,3 +165,5 @@ json {{{
   JSON.parse()
   JSON.stringify()
 }}}
+
+document.querySelector("input.ng-tns-c15-610").dispatchEvent(new Event("input"))
