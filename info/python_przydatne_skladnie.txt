@@ -3,6 +3,7 @@ print(base64.standard_b64decode(bytes('bXlzcWw6Ly9qNjQwODlydzpJZGt3cElzY2Z0UldhQ
 bytes('xyz', encoding = 'ascii').hex()
 bytez = bytes.fromhex('ff')
 "{0:.6f}".format(x)
+f'Hello, {name}!' # f-string
 
 dict literal:
 d = { 'one': '1', 'two': '2' }
