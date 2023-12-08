@@ -148,6 +148,8 @@ sqlplus / as sysdba
 alter user JACZ_MTG identified by "new password";
 alter user JACZ_MTG account unlock;
 SELECT username, account_status, created, lock_date, expiry_date FROM dba_users WHERE account_status != 'OPEN' AND lock_date > sysdate - 1;
+-- who locked user:
+select * from dba_audit_session where username = 'MOKUSER' and returncode not in (0, 28000);
 
 -- convert interval to int
 -- move seconds to days, then extract them as days
