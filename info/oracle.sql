@@ -196,8 +196,12 @@ EXIT 0;
 -- active sessions
 select SE.WAIT_CLASS, se.status, se.event, 'alter system kill session ''' || se.sid || ',' || serial# || ''';', se.osuser , se.* from v$session se
 where se.osuser = 'UY63FU'
-AND se.state = 'WAITING'
+AND se.state = 'WAITING' and se.seconds_in_wait > 600
+;
+select * from dba_blockers
 ;
 
 -- remove user schema completely
 drop user user_name cascade;
+
+select * from user_scheduler_jobs;
