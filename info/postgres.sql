@@ -19,3 +19,6 @@ select * from pg_catalog.pg_tables
 order by tablename;
 
 select * from pg_catalog.pg_default_acl order by defaclobjtype;
+
+--date literal
+timestamp '2024-09-13'
